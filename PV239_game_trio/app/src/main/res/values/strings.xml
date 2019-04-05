@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PV239_game_trio</string>
+
+    <string name="charade">Charade</string>
+    <string name="hangman">Hangman</string>
+    <string name="tikBum">TikBum</string>
+
+    <string name="choose">Choose the desired game!</string>
+
+</resources>
