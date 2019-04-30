@@ -13,6 +13,7 @@ class TikBumActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tik_bum)
+
         Log.d(TAG,"TikBumActivity created")
 
     }
