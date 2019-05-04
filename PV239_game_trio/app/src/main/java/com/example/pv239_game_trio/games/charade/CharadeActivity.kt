@@ -11,5 +11,6 @@ class CharadeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_charade)
+        Log.d(TAG,"CharadeActivity created")
     }
 }
