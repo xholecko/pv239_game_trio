@@ -1,14 +1,18 @@
-package com.example.pv239_game_trio
+package com.example.pv239_game_trio.frontend
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import com.example.pv239_game_trio.games.charade.CharadeActivity
-import com.example.pv239_game_trio.games.hangman.HangmanActivity
-import com.example.pv239_game_trio.games.tikBum.TikBumActivity
+import androidx.room.Room
+import com.example.pv239_game_trio.R
+import com.example.pv239_game_trio.backend.AppDB
+import com.example.pv239_game_trio.backend.entities.PlayerEntity
+import com.example.pv239_game_trio.frontend.games.charade.CharadeActivity
+import com.example.pv239_game_trio.frontend.games.hangman.HangmanActivity
+import com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity
 
 class MainActivity : AppCompatActivity() {
 
