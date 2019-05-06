@@ -1,8 +1,8 @@
 package com.example.pv239_game_trio.games.charade
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.pv239_game_trio.R
 
 class CharadeActivity : AppCompatActivity() {
@@ -13,6 +13,7 @@ class CharadeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_charade)
 
-        Log.d(TAG,"TikBumActivity created")
+        Log.d(TAG,"CharadeActivity created")
+
     }
 }
