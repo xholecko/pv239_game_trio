@@ -16,5 +16,6 @@
     <string name="help">help</string>
     <string name="submit">SUBMIT</string>
     <string name="guess_the_word">Guess the word</string>
+    <string name="current_high_score">current_high_score</string>
 
 </resources>

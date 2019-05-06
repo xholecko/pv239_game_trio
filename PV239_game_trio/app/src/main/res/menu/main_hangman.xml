@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+            android:id="@+id/action_show_current_high_score"
+            android:icon="@drawable/android_hangman_current_high_score"
+            android:title="@string/current_high_score"
+            app:showAsAction="ifRoom"/>
+
+    <item
             android:id="@+id/action_help"
             android:icon="@drawable/android_hangman_help"
             android:title="@string/help"

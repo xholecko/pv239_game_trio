@@ -3,7 +3,6 @@ package com.example.pv239_game_trio.games.hangman
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.Gravity
 import android.view.Menu
@@ -76,6 +75,7 @@ class HangmanGameActivity : AppCompatActivity() {
         letters.adapter = LetterAdapter(this)
 
         playerCount = intent.getIntExtra("playerCount",2)
+        scoreArray = Array(playerCount){0}
 
     }
 
@@ -87,7 +87,6 @@ class HangmanGameActivity : AppCompatActivity() {
 
         val rnd = Random()
         currentPlayer = rnd.nextInt(playerCount)
-        scoreArray = Array(playerCount){0}
         currentPart = 0
         numChars = currentWord.length
         numCorr = 0
@@ -242,9 +241,26 @@ class HangmanGameActivity : AppCompatActivity() {
                 showHelp()
                 return true
             }
+            R.id.action_show_current_high_score ->{
+                showScore()
+                return true
+            }
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showScore() {
+        val helpBuild = AlertDialog.Builder(this)
+
+        helpBuild.setTitle("Scores")
+        var string = ""
+        scoreArray.forEach { string+=it.toString()+'\n' }
+        helpBuild.setMessage(string)
+        helpBuild.setPositiveButton("OK"){_,_->}
+
+        helpBuild.create()
+        helpBuild.show()
     }
 
     private fun showHelp() {
