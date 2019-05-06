@@ -12,34 +12,82 @@ class TikBumActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioTikBum"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tik_bum)
         Log.d(TAG,"TikBumActivity created")
 
-        var db = Room.databaseBuilder(applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
+
+        /// SOME DB TESTING, WILL DELETE LATER WHEN PROPER TESTS ARE DONE
         Thread {
+            Log.d(TAG,"1")
+
+            var db = Room.databaseBuilder(applicationContext, AppDB :: class.java, "GameTrioDB").build()
+            Log.d(TAG,"2")
+
+            db.playerDAO().deleteAllPlayers()
+            Log.d(TAG,"3")
+
             var player1 = PlayerEntity()
             player1.id = 1
-            player1.name = "Stefan1"
+            player1.name = "Peter"
             player1.points = 1
 
             var player2 = PlayerEntity()
             player2.id = 2
-            player2.name = "Stefan2"
+            player2.name = "Martin"
             player2.points = 2
+            Log.d(TAG,"4")
 
             db.playerDAO().create(player1)
+            Log.d(TAG,"5")
+
             db.playerDAO().create(player2)
+            Log.d(TAG,"6")
+
 
             db.playerDAO().showAllPlayers().forEach {
-                Log.d(TAG,"Player : " + it.id + " " + it.name + " " + it.points)
+                Log.d(TAG,"Player 2* : " + it.id + " " + it.name + " " + it.points)
 
             }
 
             db.playerDAO().deleteAllPlayers()
+
+            db.playerDAO().create(player1)
+
+
+
+            player1.name = "noveMeno"
+            db.playerDAO().update(player1)
+
+            db.playerDAO().showAllPlayers().forEach {
+                Log.d(TAG,"NewName : " + it.id + " " + it.name + " " + it.points)
+
+            }
+
+            db.playerDAO().create(player2)
+
+            var foundPlayerId = db.playerDAO().findPlayerById(player2.id)
+            Log.d(TAG,"Founded player ID : " + foundPlayerId.id + " " + foundPlayerId.name + " " + foundPlayerId.points)
+
+            var foundPlayerName = db.playerDAO().findPlayerByName(player2.name)
+            Log.d(TAG,"Founded player Name : " + foundPlayerName.id + " " + foundPlayerName.name + " " + foundPlayerName.points)
+
+            var points = db.playerDAO().getPointsById(player2.id)
+            Log.d(TAG,"points : " + points)
+
+            db.playerDAO().addPointsById(player2.id,-155)
+            points = db.playerDAO().getPointsById(player2.id)
+            Log.d(TAG,"points : " + points)
+
+            db.playerDAO().delete(player2)
+
+            db.playerDAO().showAllPlayers().forEach {
+                Log.d(TAG,"Player 1* : " + it.id + " " + it.name + " " + it.points)
+           }
+
+
 
 
         }.start()
