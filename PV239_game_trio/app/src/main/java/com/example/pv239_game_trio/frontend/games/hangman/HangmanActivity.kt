@@ -14,6 +14,6 @@ class HangmanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_hangman)
 
         Log.d(TAG,"HangmanActivity created")
-
+    //ugfdsfgdsyfgdhfgsgh
     }
 }
