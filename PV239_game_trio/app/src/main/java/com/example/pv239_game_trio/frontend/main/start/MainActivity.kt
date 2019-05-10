@@ -29,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         adapter.addFragment(RemovePlayerFragment(),"RemovePlayerFragment")
 
         viewPager.adapter = adapter
+    }
 
+    fun setViewPager(fragmentNumber: Int){
+        mViewPager.currentItem = fragmentNumber
     }
 
 

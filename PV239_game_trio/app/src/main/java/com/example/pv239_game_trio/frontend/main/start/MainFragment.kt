@@ -16,7 +16,7 @@ import com.example.pv239_game_trio.frontend.main.ChooseGameActivity
 
 class MainFragment : Fragment() {
 
-    private val TAG = "GameTrioStartFragment"
+    private val TAG = "GameTrioMainFragment"
 
     private lateinit var  mainActivityButton: Button
     private lateinit var  addPlayerButton: Button
@@ -28,8 +28,8 @@ class MainFragment : Fragment() {
     private lateinit var  players: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view : View = inflater.inflate(R.layout.activity_main_fragment, container, false)
-        var db = Room.databaseBuilder<AppDB>(context!!.applicationContext, AppDB :: class.java, "GameTrioDB").build()
+        val view : View = inflater.inflate(R.layout.activity_main_fragment, container, false)
+        val db = Room.databaseBuilder<AppDB>(context!!.applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
         mainActivityButton = view.findViewById(R.id.button_start)
         addPlayerButton = view.findViewById(R.id.button_add)
@@ -45,11 +45,22 @@ class MainFragment : Fragment() {
             openActivityMain()
         })
 
+        //TODO
+        addPlayerButton.setOnClickListener(View.OnClickListener {
+            Log.d(TAG,"button ADD PLAYER was pressed")
+
+        })
+        //TODO
+        removePlayerButton.setOnClickListener(View.OnClickListener {
+            Log.d(TAG,"button RemovePlayer was pressed")
+
+        })
 
         resetPointsButton.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"button RESET POINTS was pressed")
             Thread{
                 db.playerDAO().resetPointAllPlayers()
+                Log.d(TAG,"resetPointAllPlayers() DONE")
 
             }.start()
         })
@@ -58,6 +69,7 @@ class MainFragment : Fragment() {
             Log.d(TAG,"button RESTART GAME was pressed")
             Thread{
                 db.playerDAO().deleteAllPlayers()
+                Log.d(TAG,"deleteAllPlayers() DONE")
             }.start()
         })
 
@@ -68,4 +80,6 @@ class MainFragment : Fragment() {
         val intent = Intent(activity, ChooseGameActivity::class.java)
         startActivity(intent)
     }
+
+
 }

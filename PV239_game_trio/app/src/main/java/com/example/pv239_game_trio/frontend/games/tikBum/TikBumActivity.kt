@@ -21,22 +21,21 @@ class TikBumActivity : AppCompatActivity() {
 
         /// SOME DB TESTING, WILL DELETE LATER WHEN PROPER TESTS ARE DONE
         Thread {
+
+            val db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
+
             Log.d(TAG,"1")
 
-            var db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
-
+            db.playerDAO().deleteAllPlayers()
             Log.d(TAG,"2")
 
-            //db.playerDAO().deleteAllPlayers()
-            Log.d(TAG,"3")
-
             var player1 = PlayerEntity()
-            player1.id = 1
+            player1.id = 3
             player1.name = "Peter"
             player1.points = 1
 
             var player2 = PlayerEntity()
-            player2.id = 2
+            player2.id = 4
             player2.name = "Martin"
             player2.points = 2
             Log.d(TAG,"4")
@@ -54,11 +53,11 @@ class TikBumActivity : AppCompatActivity() {
             }
 
 
-//            db.playerDAO().resetPointAllPlayers()
-//            db.playerDAO().showAllPlayers().forEach {
-//                Log.d(TAG,"Zero points all* : " + it.id + " " + it.name + " " + it.points)
-//
-//            }
+            db.playerDAO().resetPointAllPlayers()
+            db.playerDAO().showAllPlayers().forEach {
+                Log.d(TAG,"Zero points all* : " + it.id + " " + it.name + " " + it.points)
+
+            }
 
 
             db.playerDAO().deleteAllPlayers()

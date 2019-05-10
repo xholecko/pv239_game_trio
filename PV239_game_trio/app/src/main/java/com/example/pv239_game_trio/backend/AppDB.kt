@@ -13,9 +13,7 @@ import com.example.pv239_game_trio.backend.entities.TikBumEntity
 abstract class AppDB : RoomDatabase() {
 
     abstract fun playerDAO() : PlayerDAO
-
-
- //   abstract fun tikBumDAO() : TikBumDAO
+    //abstract fun tikBumDAO() : TikBumDAO
 
 //    companion object {
 //        var TEST_MODE = false
