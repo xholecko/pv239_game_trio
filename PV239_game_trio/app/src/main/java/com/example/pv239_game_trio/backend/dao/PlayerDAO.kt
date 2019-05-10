@@ -74,4 +74,11 @@ interface PlayerDAO {
     @Query("update PlayerEntity set points = points + :newPoints where id = :playerId")
     fun addPointsById(playerId: Int, newPoints : Int)
 
+
+    /**
+     * Sets all players to have 0 points
+     */
+    @Query("update PlayerEntity set points = 0 where points != 0")
+    fun resetPointAllPlayers()
+
 }

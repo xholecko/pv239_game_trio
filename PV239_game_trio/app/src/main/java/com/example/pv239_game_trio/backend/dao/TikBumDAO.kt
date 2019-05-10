@@ -31,15 +31,15 @@ interface TikBumDAO {
 
 
     /**
-     * @return list of all players from database.
+     * @return list of all words from database.
      */
     @Query("select * from TikBumEntity")
     fun showAllWords() : List<TikBumEntity>
 
 
     /**
-     * @return player from DB with specific ID.
-     * @param playerId Id of selected player
+     * @return word from DB with specific ID.
+     * @param wordId Id of selected word
      */
     @Query("select * from TikBumEntity where id = :wordId")
     fun findWordById(wordId : Int) : TikBumEntity

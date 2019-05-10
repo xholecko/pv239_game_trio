@@ -11,7 +11,7 @@ import com.example.pv239_game_trio.frontend.games.charade.CharadeActivity
 import com.example.pv239_game_trio.frontend.games.hangman.HangmanActivity
 import com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity
 
-class MainActivity : AppCompatActivity() {
+class ChooseGameActivity : AppCompatActivity() {
 
     private val TAG = "GameTrio"
 
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_choose_game)
 
         buttonCharade = findViewById(R.id.charade)
         buttonHangman = findViewById(R.id.hangman)

@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.room.Room
 import com.example.pv239_game_trio.R
-import com.example.pv239_game_trio.frontend.main.MainActivity
+import com.example.pv239_game_trio.backend.AppDB
+import com.example.pv239_game_trio.frontend.main.ChooseGameActivity
 
-class StartFragment : Fragment() {
+class MainFragment : Fragment() {
 
     private val TAG = "GameTrioStartFragment"
 
@@ -20,16 +22,21 @@ class StartFragment : Fragment() {
     private lateinit var  addPlayerButton: Button
     private lateinit var  removePlayerButton: Button
     private lateinit var  restartGameButton: Button
+    private lateinit var  resetPointsButton: Button
+
     private lateinit var  infoText: TextView
     private lateinit var  players: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view : View = inflater.inflate(R.layout.activity_start_fragment, container, false)
+        var view : View = inflater.inflate(R.layout.activity_main_fragment, container, false)
+        var db = Room.databaseBuilder<AppDB>(context!!.applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
         mainActivityButton = view.findViewById(R.id.button_start)
         addPlayerButton = view.findViewById(R.id.button_add)
-        removePlayerButton = view.findViewById(R.id.button_start)
-        restartGameButton = view.findViewById(R.id.button_add)
+        removePlayerButton = view.findViewById(R.id.button_remove_player)
+        restartGameButton = view.findViewById(R.id.button_restart_game)
+        resetPointsButton = view.findViewById(R.id.button_reset_points)
+
         infoText = view.findViewById(R.id.textView_info)
         players = view.findViewById(R.id.textView_players)
 
@@ -38,13 +45,27 @@ class StartFragment : Fragment() {
             openActivityMain()
         })
 
+
+        resetPointsButton.setOnClickListener(View.OnClickListener {
+            Log.d(TAG,"button RESET POINTS was pressed")
+            Thread{
+                db.playerDAO().resetPointAllPlayers()
+
+            }.start()
+        })
+
+        restartGameButton.setOnClickListener(View.OnClickListener {
+            Log.d(TAG,"button RESTART GAME was pressed")
+            Thread{
+                db.playerDAO().deleteAllPlayers()
+            }.start()
+        })
+
         return view
     }
 
     private fun openActivityMain(){
-
-        //TODO activity? this?
-        val intent = Intent(activity, MainActivity::class.java)
+        val intent = Intent(activity, ChooseGameActivity::class.java)
         startActivity(intent)
     }
 }

@@ -25,6 +25,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button_restart_game"/>
         <Button
+                android:text="@string/reset_points"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_reset_points"/>
+        <Button
                 android:text="@string/start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button_start"/>

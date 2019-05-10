@@ -15,6 +15,9 @@
     <string name="start">Start</string>
     <string name="restart">Restart Game</string>
     <string name="remove">Remove player</string>
+    <string name="score">Score</string>
+
+    <string name="reset_points">Reset points</string>
 
     <string-array name="people_count">
         <item>2</item>

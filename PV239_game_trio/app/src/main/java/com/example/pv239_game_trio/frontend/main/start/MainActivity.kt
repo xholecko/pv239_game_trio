@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.example.pv239_game_trio.R
 
-class Start : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
 
     private val TAG = "GameTrioStart"
@@ -14,20 +14,25 @@ class Start : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start)
+        setContentView(R.layout.activity_main)
 
         mViewPager = findViewById(R.id.container)
+
+        setupViewPager(mViewPager)
     }
 
 
     private fun setupViewPager(viewPager: ViewPager) {
-        var adapter : SectionStatePagerAdapter = SectionStatePagerAdapter(supportFragmentManager)
-        adapter.addFragment(StartFragment(),"StartFragment")
-        adapter.addFragment(AddPlayerFragment(),"StartFragment")
-        adapter.addFragment(RemovePlayerFragment(),"StartFragment")
+        val adapter = SectionStatePagerAdapter(supportFragmentManager)
+        adapter.addFragment(MainFragment(),"MainFragment")
+        adapter.addFragment(AddPlayerFragment(),"AddPlayerFragment")
+        adapter.addFragment(RemovePlayerFragment(),"RemovePlayerFragment")
+
+        viewPager.adapter = adapter
 
     }
 
 
 
 }
+

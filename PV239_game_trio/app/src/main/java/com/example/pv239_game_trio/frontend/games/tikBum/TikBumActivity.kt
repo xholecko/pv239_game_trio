@@ -23,10 +23,11 @@ class TikBumActivity : AppCompatActivity() {
         Thread {
             Log.d(TAG,"1")
 
-            var db = Room.databaseBuilder(applicationContext, AppDB :: class.java, "GameTrioDB").build()
+            var db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
+
             Log.d(TAG,"2")
 
-            db.playerDAO().deleteAllPlayers()
+            //db.playerDAO().deleteAllPlayers()
             Log.d(TAG,"3")
 
             var player1 = PlayerEntity()
@@ -41,16 +42,24 @@ class TikBumActivity : AppCompatActivity() {
             Log.d(TAG,"4")
 
             db.playerDAO().create(player1)
-            Log.d(TAG,"5")
+            Log.d(TAG,"9")
 
             db.playerDAO().create(player2)
-            Log.d(TAG,"6")
+            Log.d(TAG,"8")
 
 
             db.playerDAO().showAllPlayers().forEach {
                 Log.d(TAG,"Player 2* : " + it.id + " " + it.name + " " + it.points)
 
             }
+
+
+//            db.playerDAO().resetPointAllPlayers()
+//            db.playerDAO().showAllPlayers().forEach {
+//                Log.d(TAG,"Zero points all* : " + it.id + " " + it.name + " " + it.points)
+//
+//            }
+
 
             db.playerDAO().deleteAllPlayers()
 
