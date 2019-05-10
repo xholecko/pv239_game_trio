@@ -9,13 +9,15 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity">
+        <activity android:name=".frontend.main.start.Start">
         </activity>
-        <activity android:name="com.example.pv239_game_trio.frontend.games.hangman.HangmanActivity">
+        <activity android:name=".frontend.games.tikBum.TikBumActivity">
         </activity>
-        <activity android:name="com.example.pv239_game_trio.frontend.games.charade.CharadeActivity">
+        <activity android:name=".frontend.games.hangman.HangmanActivity">
         </activity>
-        <activity android:name=".frontend.MainActivity">
+        <activity android:name=".frontend.games.charade.CharadeActivity">
+        </activity>
+        <activity android:name=".frontend.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

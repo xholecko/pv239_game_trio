@@ -9,6 +9,13 @@
     <string name="play">Play</string>
     <string name="select_number_of_players">Select number of players</string>
 
+    <string name="add">Add player</string>
+    <string name="info_add_activity">Current players</string>
+    <string name="players">Players</string>
+    <string name="start">Start</string>
+    <string name="restart">Restart Game</string>
+    <string name="remove">Remove player</string>
+
     <string-array name="people_count">
         <item>2</item>
         <item>3</item>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/linear_layout_add_player">
+        <TextView
+                android:text="@string/info_add_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView_info"/>
+        <TextView
+                android:text="@string/players"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView_players"/>
+        <Button
+                android:text="@string/add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_add"/>
+        <Button
+                android:text="@string/remove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_remove_player"/>
+        <Button
+                android:text="@string/restart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_restart_game"/>
+        <Button
+                android:text="@string/start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_start"/>
+</LinearLayout>
