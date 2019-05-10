@@ -1,4 +1,4 @@
-package com.example.pv239_game_trio.games.charade
+package com.example.pv239_game_trio.frontend.games.charade
 
 import android.os.Bundle
 import android.util.Log

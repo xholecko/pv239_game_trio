@@ -1,4 +1,4 @@
-package  com.example.pv239_game_trio.games.hangman
+package  com.example.pv239_game_trio.frontend.games.hangman
 
 
 import android.content.Intent
@@ -12,6 +12,7 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 
 import com.example.pv239_game_trio.R
+import com.example.pv239_game_trio.games.hangman.HangmanGameActivity
 
 
 class HangmanActivity : AppCompatActivity() {

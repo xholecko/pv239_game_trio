@@ -1,6 +1,6 @@
 package com.example.pv239_game_trio.games.tikBum
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.pv239_game_trio.R
