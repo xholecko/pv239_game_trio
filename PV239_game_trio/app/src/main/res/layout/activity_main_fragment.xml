@@ -11,7 +11,8 @@
         <TextView
                 android:text="@string/players"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView_players"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_players"/>
         <Button
                 android:text="@string/add"
                 android:layout_width="match_parent"

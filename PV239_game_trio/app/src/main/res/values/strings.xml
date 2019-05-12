@@ -22,6 +22,11 @@
     <string name="teams">Teams</string>
 
 
+    <string name="tick">Tick</string>
+    <string name="tickTock">TickTock</string>
+    <string name="boom">Boom</string>
+
+
     <string name="reset_points">Reset points</string>
 
     <string-array name="people_count">

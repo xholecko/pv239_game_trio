@@ -26,11 +26,13 @@ class TikBumActivity : AppCompatActivity() {
     private lateinit var soundBoom : MediaPlayer
 
 
-    lateinit var buttonStart : Button
+    private lateinit var buttonStart : Button
 
-    lateinit var timer: CountDownTimer
+    private lateinit var timer: CountDownTimer
 
-    lateinit var wordTextView: TextView
+    private lateinit var wordTextView: TextView
+    private lateinit var positionTextView: TextView
+
 
     private var timerRunning : Boolean = false
 
@@ -42,15 +44,17 @@ class TikBumActivity : AppCompatActivity() {
         Log.d(TAG,"TikBumActivity created")
         val db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
         createWords(db)
+        createPlayers(db)
         //someTestDeleteLater(db)
 
 
-        soundTikTok = MediaPlayer.create(this,R.raw.tick_tack)
+        soundTikTok = MediaPlayer.create(this,R.raw.ticking_sound)
         soundBoom = MediaPlayer.create(this,R.raw.boom)
 
         buttonStart = findViewById(R.id.button_start_tik_bum)
 
         wordTextView = findViewById(R.id.TextView_TikTak)
+        positionTextView = findViewById(R.id.TextView_position)
 
 
         //TODO
@@ -58,37 +62,44 @@ class TikBumActivity : AppCompatActivity() {
             Log.d(TAG,"button buttonStart was pressed")
             val randomTime = (TIME_MILLIS_DOWN_LIMIT..TIME_MILLIS_UP_LIMIT).shuffled().first()
             val randomWord = (0..6).shuffled().first()
-            val randomPosition = (0..2).shuffled().first()
             Log.d(TAG,"Time is set to: " + randomTime + " millis")
+            positionTextView.text = getPosition().toUpperCase()
+
+
 
             Thread{
                 var tikBumWord = db.tikBumDAO().findWordById(randomWord)
                 wordTextView.text = tikBumWord.word.toUpperCase()
-
             }.start()
 
 
             startTimer(randomTime)
+
         })
 
 
 
     }
 
+    private fun getPosition() : String{
+        var positionString: MutableList<String> = mutableListOf<String>("Tick","TickTock","Boom")
+        return positionString[(0..2).shuffled().first()]
+
+    }
 
     private fun startTimer(timeLeft : Long){
         timer = object: CountDownTimer(timeLeft,1000) {
             override fun onTick(millisUntilFinished: Long) {
                 buttonStart.visibility = View.INVISIBLE
                 timerRunning = true
+                //soundTikTok.isLooping = true
                 soundTikTok.start()
-                soundTikTok.isLooping = true
             }
 
             override fun onFinish() {
                 buttonStart.visibility = View.VISIBLE
                 timerRunning = false
-                soundTikTok.isLooping = false
+                //soundTikTok.isLooping = false
                 soundTikTok.stop()
                 soundBoom.start()
 
@@ -144,101 +155,44 @@ class TikBumActivity : AppCompatActivity() {
     }
 
 
-
-
-
-
-    private fun someTestDeleteLater(db: AppDB){
-        /// SOME DB TESTING, WILL DELETE LATER WHEN PROPER TESTS ARE DONE
+    private fun createPlayers(db: AppDB){
         Thread {
-
-
-            Log.d(TAG,"1")
-
-            //db.playerDAO().deleteAllPlayers()
-            //db.tikBumDAO().deleteAllWords()
-            Log.d(TAG,"2")
-
             var player1 = PlayerEntity()
-            player1.id = 16
+            player1.id = 0
             player1.name = "Peter"
-            player1.points = 1
+            player1.team = 1
+            player1.points = 0
+
 
             var player2 = PlayerEntity()
-            player2.id = 24
-            player2.name = "Martin"
-            player2.points = 2
-            Log.d(TAG,"4")
+            player2.id = 1
+            player2.name = "Marcel"
+            player2.team = 1
+            player2.points = 0
+
+
+            var player3 = PlayerEntity()
+            player3.id = 2
+            player3.name = "Jitka"
+            player3.team = 0
+            player3.points = 0
+
+
+            var player4 = PlayerEntity()
+            player4.id = 3
+            player4.name = "Sara"
+            player4.team = 0
+            player4.points = 0
+
+
 
             db.playerDAO().create(player1)
-            Log.d(TAG,"9")
-
             db.playerDAO().create(player2)
-            Log.d(TAG,"8")
+            db.playerDAO().create(player3)
+            db.playerDAO().create(player4)
 
-
-            db.playerDAO().showAllPlayers().forEach {
-                Log.d(TAG,"Player 2* : " + it.id + " " + it.name + " " + it.points)
-
-            }
-
-
-            db.playerDAO().resetPointAllPlayers()
-            db.playerDAO().showAllPlayers().forEach {
-                Log.d(TAG,"Zero points all* : " + it.id + " " + it.name + " " + it.points)
-
-            }
-
-
-            db.playerDAO().deleteAllPlayers()
-
-            db.playerDAO().create(player1)
-
-
-
-            player1.name = "noveMeno"
-            db.playerDAO().update(player1)
-
-            db.playerDAO().showAllPlayers().forEach {
-                Log.d(TAG,"NewName : " + it.id + " " + it.name + " " + it.points)
-
-            }
-
-            db.playerDAO().create(player2)
-
-            var foundPlayerId = db.playerDAO().findPlayerById(player2.id)
-            Log.d(TAG,"Founded player ID : " + foundPlayerId.id + " " + foundPlayerId.name + " " + foundPlayerId.points)
-
-            var foundPlayerName = db.playerDAO().findPlayerByName(player2.name)
-            Log.d(TAG,"Founded player Name : " + foundPlayerName.id + " " + foundPlayerName.name + " " + foundPlayerName.points)
-
-            var points = db.playerDAO().getPointsById(player2.id)
-            Log.d(TAG,"points : " + points)
-
-            db.playerDAO().addPointsById(player2.id,-155)
-            points = db.playerDAO().getPointsById(player2.id)
-            Log.d(TAG,"points : " + points)
-
-            db.playerDAO().delete(player2)
-
-            db.playerDAO().showAllPlayers().forEach {
-                Log.d(TAG,"Player 1* : " + it.id + " " + it.name + " " + it.points)
-            }
-            var word1 = TikBumEntity()
-
-            word1.id = 8
-            word1.word = "ha"
-
-            db.tikBumDAO().create(word1)
-
-
-            db.tikBumDAO().showAllWords().forEach {
-                Log.d(TAG,"Word : " + it.id + " " + it.word)
-            }
-
-
+            Log.d(TAG,"4 players created")
 
         }.start()
-
     }
 }
