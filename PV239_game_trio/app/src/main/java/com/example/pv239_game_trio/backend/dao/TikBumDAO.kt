@@ -10,7 +10,7 @@ interface TikBumDAO {
      * Create new word in database.
      * @param word to be created.
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun create(word: TikBumEntity)
 
 
@@ -36,6 +36,12 @@ interface TikBumDAO {
     @Query("select * from TikBumEntity")
     fun showAllWords() : List<TikBumEntity>
 
+
+    /**
+     * Delete all words from database
+     */
+    @Query("delete from TikBumEntity")
+    fun deleteAllWords()
 
     /**
      * @return word from DB with specific ID.

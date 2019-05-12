@@ -16,6 +16,11 @@
     <string name="restart">Restart Game</string>
     <string name="remove">Remove player</string>
     <string name="score">Score</string>
+    <string name="name">Name</string>
+    <string name="hint">Name or nick</string>
+
+    <string name="teams">Teams</string>
+
 
     <string name="reset_points">Reset points</string>
 

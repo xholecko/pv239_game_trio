@@ -1,5 +1,7 @@
 package com.example.pv239_game_trio.backend.dao
 
+import android.util.Log
+import androidx.annotation.Nullable
 import androidx.room.*
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 
@@ -9,7 +11,7 @@ interface PlayerDAO {
      * Create new player in database.
      * @param player to be created.
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun create(player: PlayerEntity)
 
 
@@ -39,7 +41,7 @@ interface PlayerDAO {
     /**
      * Delete all players from database
      */
-    @Query("delete from PlayerEntity where id < 10")
+    @Query("delete from PlayerEntity")
     fun deleteAllPlayers()
 
 
@@ -74,11 +76,25 @@ interface PlayerDAO {
     @Query("update PlayerEntity set points = points + :newPoints where id = :playerId")
     fun addPointsById(playerId: Int, newPoints : Int)
 
+    /**
+     * Adds / Remove selected number of points from selected player number of points
+     * @param playerId id of selected player
+     */
+    @Query("update PlayerEntity set points = points + :newPoints where team = :team")
+    fun addPointsByTeam(team: Int, newPoints : Int)
+
 
     /**
      * Sets all players to have 0 points
      */
     @Query("update PlayerEntity set points = 0 where points != 0")
     fun resetPointAllPlayers()
+
+    /**
+     * Adds selected number of points to all players but one
+     * @param playerId id of selected player who will not get the points
+     */
+    @Query("update PlayerEntity set points = points + :newPoints where id != :playerId")
+    fun addPointsToAllButOneById(playerId: Int, newPoints : Int)
 
 }

@@ -2,9 +2,10 @@ package com.example.pv239_game_trio.frontend.main.start
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 
-class SectionStatePagerAdapter : FragmentStatePagerAdapter{
+class SectionStatePagerAdapter : FragmentPagerAdapter {
 
     val mFragmentList = arrayListOf<Fragment>()
     val mFragmentTitleList = arrayListOf<String>()
