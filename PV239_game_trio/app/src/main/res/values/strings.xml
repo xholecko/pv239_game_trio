@@ -9,6 +9,16 @@
     <string name="play">Play</string>
     <string name="select_number_of_players">Select number of players</string>
 
+    <string name="gallows">gallows</string>
+    <string name="head">head</string>
+    <string name="body">body</string>
+    <string name="arm">arm</string>
+    <string name="leg">leg</string>
+    <string name="help">help</string>
+    <string name="submit">SUBMIT</string>
+    <string name="guess_the_word">Guess the word</string>
+    <string name="current_high_score">current_high_score</string>
+
     <string name="add">Add team</string>
     <string name="info_add_activity">Current teams</string>
     <string name="players">Teams</string>
@@ -28,13 +38,5 @@
 
 
     <string name="reset_points">Reset points</string>
-
-    <string-array name="people_count">
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-    </string-array>
 
 </resources>
