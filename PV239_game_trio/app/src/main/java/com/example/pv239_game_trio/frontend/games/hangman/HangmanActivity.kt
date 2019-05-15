@@ -25,7 +25,7 @@ class HangmanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hangman)
+        setContentView(R.layout.activity_hangman_menu)
 
         initSpinner()
         initButton()
