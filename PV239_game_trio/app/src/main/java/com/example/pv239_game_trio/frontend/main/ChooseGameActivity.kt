@@ -1,4 +1,4 @@
-package com.example.pv239_game_trio.frontend
+package com.example.pv239_game_trio.frontend.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,15 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import androidx.room.Room
 import com.example.pv239_game_trio.R
-import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.frontend.games.charade.CharadeActivity
 import com.example.pv239_game_trio.frontend.games.hangman.HangmanActivity
 import com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity
 
-class MainActivity : AppCompatActivity() {
+class ChooseGameActivity : AppCompatActivity() {
 
     private val TAG = "GameTrio"
 
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_choose_game)
 
         buttonCharade = findViewById(R.id.charade)
         buttonHangman = findViewById(R.id.hangman)
