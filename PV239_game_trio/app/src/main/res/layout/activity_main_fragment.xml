@@ -30,10 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button_reset_points"/>
         <Button
-                android:text="@string/teams"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/button_teams"/>
-        <Button
                 android:text="@string/start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button_start"/>

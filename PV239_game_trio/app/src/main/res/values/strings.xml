@@ -9,15 +9,15 @@
     <string name="play">Play</string>
     <string name="select_number_of_players">Select number of players</string>
 
-    <string name="add">Add player</string>
-    <string name="info_add_activity">Current players</string>
-    <string name="players">Players</string>
+    <string name="add">Add team</string>
+    <string name="info_add_activity">Current teams</string>
+    <string name="players">Teams</string>
     <string name="start">Start</string>
     <string name="restart">Restart Game</string>
-    <string name="remove">Remove player</string>
+    <string name="remove">Remove team</string>
     <string name="score">Score</string>
     <string name="name">Name</string>
-    <string name="hint">Name or nick</string>
+    <string name="hint">Name of the team</string>
 
     <string name="teams">Teams</string>
 

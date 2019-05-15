@@ -10,7 +10,7 @@ import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 
-class RemovePlayerFragment : Fragment(){
+class RemoveTeamFragment : Fragment(){
 
 
     private lateinit var  infoText: TextView

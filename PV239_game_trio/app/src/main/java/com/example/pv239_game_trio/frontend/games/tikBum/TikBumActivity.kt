@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.entities.PlayerEntity
+import com.example.pv239_game_trio.backend.entities.TeamEntity
 import com.example.pv239_game_trio.backend.entities.TikBumEntity
 
 class TikBumActivity : AppCompatActivity() {
@@ -157,31 +157,27 @@ class TikBumActivity : AppCompatActivity() {
 
     private fun createPlayers(db: AppDB){
         Thread {
-            var player1 = PlayerEntity()
+            var player1 = TeamEntity()
             player1.id = 0
             player1.name = "Peter"
-            player1.team = 1
             player1.points = 0
 
 
-            var player2 = PlayerEntity()
+            var player2 = TeamEntity()
             player2.id = 1
             player2.name = "Marcel"
-            player2.team = 1
             player2.points = 0
 
 
-            var player3 = PlayerEntity()
+            var player3 = TeamEntity()
             player3.id = 2
             player3.name = "Jitka"
-            player3.team = 0
             player3.points = 0
 
 
-            var player4 = PlayerEntity()
+            var player4 = TeamEntity()
             player4.id = 3
             player4.name = "Sara"
-            player4.team = 0
             player4.points = 0
 
 

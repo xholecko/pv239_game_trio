@@ -3,8 +3,6 @@ package com.example.pv239_game_trio.frontend.main.start
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.example.pv239_game_trio.R
 
@@ -34,8 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = SectionStatePagerAdapter(supportFragmentManager)
         adapter.addFragment(MainFragment(),"MainFragment")
-        adapter.addFragment(AddPlayerFragment(),"AddPlayerFragment")
-        adapter.addFragment(RemovePlayerFragment(),"RemovePlayerFragment")
+        adapter.addFragment(AddTeamFragment(),"AddTeamFragment")
+        adapter.addFragment(RemoveTeamFragment(),"RemoveTeamFragment")
 
         viewPager.adapter = adapter
     }

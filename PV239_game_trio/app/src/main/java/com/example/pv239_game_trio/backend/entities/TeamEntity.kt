@@ -4,13 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class PlayerEntity (
+data class TeamEntity (
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
 
     var name : String = "",
 
-    var points : Int = 0,
+    var points : Int = 0
 
-    var team : Int = 0
 )

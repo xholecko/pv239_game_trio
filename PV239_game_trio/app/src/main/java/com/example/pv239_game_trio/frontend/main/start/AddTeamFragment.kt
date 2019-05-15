@@ -7,27 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Database
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.google.android.material.textfield.TextInputLayout
 
-class AddPlayerFragment : Fragment() {
+class AddTeamFragment : Fragment() {
 
 
 
-    private val TAG = "GameTrioAddPlayerFrag"
+    private val TAG = "GameTrioAddTeamFrag"
 
-    private lateinit var  addPlayerButton: Button
-    private lateinit var  removePlayersButton: Button
+    private lateinit var  addTeamButton: Button
+    private lateinit var  removeTeamsButton: Button
 
 
-    private lateinit var  players: TextView
+    private lateinit var  teams: TextView
 
     lateinit var mRecyclerView: RecyclerView
 
@@ -42,10 +39,10 @@ class AddPlayerFragment : Fragment() {
         Log.d(TAG,"onCreateView() ")
 
         textInputWord = view.findViewById(R.id.input)
-        players = view.findViewById(R.id.textView_players)
+        teams = view.findViewById(R.id.textView_players)
 
-        addPlayerButton = view.findViewById(R.id.button_add_player)
-        removePlayersButton = view.findViewById(R.id.button_remove_all)
+        addTeamButton = view.findViewById(R.id.button_add_player)
+        removeTeamsButton = view.findViewById(R.id.button_remove_all)
 
         mRecyclerView = view.findViewById(R.id.recycler_view)
 
@@ -73,7 +70,7 @@ class AddPlayerFragment : Fragment() {
 //                    }
 //
 //                    if (dbValidation == "ok"){
-//                        var player = PlayerEntity()
+//                        var player = TeamEntity()
 //                        player.id = db.playerDAO().showAllPlayers().size
 //                        player.name = name
 //                        player.points = 0
