@@ -1,24 +1,17 @@
-package com.example.pv239_game_trio.backend.entities
+package com.example.pv239_game_trio.backend.dto
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity
-class PlayerEntity {
-
-    @PrimaryKey
+class TeamDTO{
     var id: Int = 0
 
     var name : String = ""
 
     var points : Int = 0
 
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as PlayerEntity
+        other as TeamDTO
 
         if (id != other.id) return false
         if (name != other.name) return false
@@ -32,5 +25,8 @@ class PlayerEntity {
         return result
     }
 
+    override fun toString(): String {
+        return "Name='$name', points=$points)"
+    }
 
 }

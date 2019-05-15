@@ -8,20 +8,22 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme"
-    >
-        <activity android:name=".games.tikBum.TikBumActivity">
+            android:theme="@style/AppTheme">
+        <activity android:name=".frontend.main.ChooseGameActivity">
+        </activity>
+        <activity android:name=".frontend.games.tikBum.TikBumActivity">
         </activity>
         <activity android:name=".frontend.games.hangman.HangmanActivity">
         </activity>
-        <activity
-                android:name=".games.hangman.HangmanGameActivity"
-                android:parentActivityName=".frontend.games.hangman.HangmanActivity"
-                android:screenOrientation="portrait">
-        </activity>
+            <activity
+                    android:name=".games.hangman.HangmanGameActivity"
+                    android:parentActivityName=".frontend.games.hangman.HangmanActivity"
+                    android:screenOrientation="portrait">
+            </activity>
+
         <activity android:name=".frontend.games.charade.CharadeActivity">
         </activity>
-        <activity android:name=".frontend.MainActivity">
+        <activity android:name=".frontend.main.start.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
