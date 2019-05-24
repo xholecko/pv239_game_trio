@@ -47,7 +47,6 @@ dependencies {
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation 'com.android.support:design:28.0.0'
 
-
     // ROOM PERSISTENCE LIBRARY ADDED
     def room_version = "2.1.0-alpha07"
     implementation "androidx.room:room-runtime:$room_version"
@@ -60,6 +59,5 @@ dependencies {
     implementation "androidx.room:room-guava:$room_version"
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
-
 
 }

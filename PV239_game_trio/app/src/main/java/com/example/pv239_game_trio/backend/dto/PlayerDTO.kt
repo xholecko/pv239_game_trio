@@ -1,6 +1,6 @@
 package com.example.pv239_game_trio.backend.dto
 
-class TeamDTO{
+class PlayerDTO{
     var id: Int = 0
 
     var name : String = ""
@@ -11,7 +11,7 @@ class TeamDTO{
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as TeamDTO
+        other as PlayerDTO
 
         if (id != other.id) return false
         if (name != other.name) return false
@@ -26,7 +26,7 @@ class TeamDTO{
     }
 
     override fun toString(): String {
-        return "Name='$name', points=$points)"
+        return "Name='$name', points=$points, id=$id)"
     }
 
 }

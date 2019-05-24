@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.dto.TeamDTO
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.frontend.main.ChooseGameActivity
 
@@ -125,22 +124,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun showPlayers(db: AppDB) : String{
-        var actualPlayers = ""
 
-        Thread{
-            var playersInDB = db.playerDAO().showAllPlayers()
-
-            for (playerDb in playersInDB){
-                var playerDTO = TeamDTO()
-                playerDTO.name = playerDb.name
-                playerDTO.points = playerDb.points
-                actualPlayers = actualPlayers + playerDTO.toString() + "/n"
-            }
-        }.start()
-
-        return actualPlayers
-    }
 
 
     private fun createPlayers(db: AppDB){

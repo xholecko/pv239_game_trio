@@ -29,21 +29,21 @@ class ChooseGameActivity : AppCompatActivity() {
         buttonTikBum = findViewById(R.id.tikBum)
 
 
-        buttonCharade.setOnClickListener(View.OnClickListener {
+        buttonCharade.setOnClickListener {
             Log.d(TAG,"button CHARADE was pressed")
             openActivityCharade()
-        })
+        }
 
 
-        buttonHangman.setOnClickListener(View.OnClickListener {
+        buttonHangman.setOnClickListener {
             Log.d(TAG,"button HANGMAN was pressed")
             openActivityHangman()
-        })
+        }
 
-        buttonTikBum.setOnClickListener(View.OnClickListener {
+        buttonTikBum.setOnClickListener {
             Log.d(TAG,"button TIKBUM was pressed")
             openActivityTikBum()
-        })
+        }
 
     }
 

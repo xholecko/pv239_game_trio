@@ -20,6 +20,12 @@
         </activity>
         <activity android:name=".frontend.games.hangman.HangmanActivity">
         </activity>
+            <activity
+                    android:name=".games.hangman.HangmanGameActivity"
+                    android:parentActivityName=".frontend.games.hangman.HangmanActivity"
+                    android:screenOrientation="portrait">
+            </activity>
+
         <activity android:name=".frontend.games.charade.CharadeActivity">
         </activity>
         <activity android:name=".frontend.main.start.MainActivity">

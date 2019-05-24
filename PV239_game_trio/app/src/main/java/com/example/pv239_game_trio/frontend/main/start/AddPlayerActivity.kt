@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.dto.TeamDTO
+import com.example.pv239_game_trio.backend.dto.PlayerDTO
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.google.android.material.textfield.TextInputLayout
 
@@ -76,7 +76,11 @@ class AddPlayerActivity : AppCompatActivity() {
                         db.playerDAO().create(player)
                         Log.d(TAG,"Player was created")
                         val a = db.playerDAO().findPlayerById(player.id)
-                        Log.d(TAG,a.toString())
+                        val playerDTO = PlayerDTO()
+                        playerDTO.id = a.id
+                        playerDTO.name = a.name
+                        playerDTO.points = a.points
+                        Log.d(TAG,playerDTO.toString())
                     }
 
                 }.start()
@@ -94,8 +98,6 @@ class AddPlayerActivity : AppCompatActivity() {
                 Toast.makeText(this, "Field can not be empty", Toast.LENGTH_SHORT).show()
             }
             Log.d(TAG,"haha")
-
-            Log.d(TAG,showPlayers(db))
 
         })
 
@@ -133,22 +135,5 @@ class AddPlayerActivity : AppCompatActivity() {
             return true
         }
 
-    }
-
-    private fun showPlayers(db: AppDB) : String{
-        var actualPlayers = ""
-
-        Thread{
-            var playersInDB = db.playerDAO().showAllPlayers()
-
-            for (playerDb in playersInDB){
-                var playerDTO = TeamDTO()
-                playerDTO.name = playerDb.name
-                playerDTO.points = playerDb.points
-                actualPlayers = actualPlayers + playerDTO.toString() + "/n"
-            }
-        }.start()
-
-        return actualPlayers
     }
 }
