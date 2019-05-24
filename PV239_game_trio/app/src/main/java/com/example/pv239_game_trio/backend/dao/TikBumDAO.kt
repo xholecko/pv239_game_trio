@@ -36,7 +36,6 @@ interface TikBumDAO {
     @Query("select * from TikBumEntity")
     fun showAllWords() : List<TikBumEntity>
 
-
     /**
      * Delete all words from database
      */

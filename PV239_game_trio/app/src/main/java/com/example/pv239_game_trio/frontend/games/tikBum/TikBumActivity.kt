@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.entities.TeamEntity
+import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.backend.entities.TikBumEntity
 
 class TikBumActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class TikBumActivity : AppCompatActivity() {
     private val TAG = "GameTrioTikBum"
 
     private val NUMBER_OF_WORDS_DB = 6
-    private val TIME_MILLIS_UP_LIMIT : Long = 6000
+    private val TIME_MILLIS_UP_LIMIT : Long = 12000
     private val TIME_MILLIS_DOWN_LIMIT : Long = 1000
 
     private lateinit var soundTikTok : MediaPlayer
@@ -157,25 +157,25 @@ class TikBumActivity : AppCompatActivity() {
 
     private fun createPlayers(db: AppDB){
         Thread {
-            var player1 = TeamEntity()
+            var player1 = PlayerEntity()
             player1.id = 0
             player1.name = "Peter"
             player1.points = 0
 
 
-            var player2 = TeamEntity()
+            var player2 = PlayerEntity()
             player2.id = 1
             player2.name = "Marcel"
             player2.points = 0
 
 
-            var player3 = TeamEntity()
+            var player3 = PlayerEntity()
             player3.id = 2
             player3.name = "Jitka"
             player3.points = 0
 
 
-            var player4 = TeamEntity()
+            var player4 = PlayerEntity()
             player4.id = 3
             player4.name = "Sara"
             player4.points = 0

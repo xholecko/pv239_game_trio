@@ -13,7 +13,7 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 class PlayerDAOTest {
 
-    //private lateinit var playerDAO: TeamDAO
+    //private lateinit var playerDAO: PlayerDAO
     private lateinit var db: AppDB
 
     @Before
@@ -33,7 +33,7 @@ class PlayerDAOTest {
     @Test
     @Throws(Exception::class)
     fun readAndWriteTests() {
-//        val player = TeamEntity(name = "Peter", points = 2,team = 1)
+//        val player = PlayerEntity(name = "Peter", points = 2,team = 1)
 //        val playerId = db.playerDAO().create(player)
 //        val playerFromDb = db.playerDAO().getPlayer()
 //        assertEquals(playerId, 1)
