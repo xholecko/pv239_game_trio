@@ -36,9 +36,5 @@
                 android:text="@string/add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button_add_player"/>
-        <Button
-                android:text="@string/restart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/button_remove_all"/>
 
 </LinearLayout>

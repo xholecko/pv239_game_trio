@@ -19,42 +19,41 @@ class AddPlayerActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioAddPlayer"
     private lateinit var  addPlayerButton: Button
-    private lateinit var  removePlayersButton: Button
-
-
-    private lateinit var  teams: TextView
-
+    private lateinit var  playersTextView: TextView
     lateinit var mRecyclerView: RecyclerView
-
     lateinit var textInputWord: TextInputLayout
-
+    private var playersInDb = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_player)
         Log.d(TAG,"onCreate()")
 
-
         val db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
-        Log.d(TAG,"onCreateView() ")
+        //playersInDb = getNumberOfPlayersFromDb(db)
+
+        playersTextView = findViewById(R.id.textView_players)
+
+        playersTextView.text = showAllPlayers(db)
+
 
         textInputWord = findViewById(R.id.input)
-        teams = findViewById(R.id.textView_players)
 
         addPlayerButton = findViewById(R.id.button_add_player)
-        removePlayersButton = findViewById(R.id.button_remove_all)
 
         mRecyclerView = findViewById(R.id.recycler_view)
 
 
-        //TODO
         addPlayerButton.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"button AddPlayer was pressed")
-            if (validateInput(db)){
+            var name = textInputWord.editText!!.text.toString().trim()
+
+            if (validateInput(name)){
 
                 var dbValidation = "ok"
 
-                var name = textInputWord.editText!!.text.toString().trim()
+                Log.d(TAG,"Adding player to DB with name: " + name)
+
                 Thread{
 
 
@@ -74,6 +73,7 @@ class AddPlayerActivity : AppCompatActivity() {
                         player.name = name
                         player.points = 0
                         db.playerDAO().create(player)
+
                         Log.d(TAG,"Player was created")
                         val a = db.playerDAO().findPlayerById(player.id)
                         val playerDTO = PlayerDTO()
@@ -81,6 +81,9 @@ class AddPlayerActivity : AppCompatActivity() {
                         playerDTO.name = a.name
                         playerDTO.points = a.points
                         Log.d(TAG,playerDTO.toString())
+                        playersInDb += 1
+                        Log.d(TAG,"number of players in DB is : " + playersInDb)
+                        showAllPlayers(db)
                     }
 
                 }.start()
@@ -90,35 +93,24 @@ class AddPlayerActivity : AppCompatActivity() {
 
                     if (dbValidation == "nameProblem") {
                         textInputWord.error = "There is already player with the same name"
-
                     }
 
 
             } else{
-                Toast.makeText(this, "Field can not be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Validation problem", Toast.LENGTH_SHORT).show()
             }
-            Log.d(TAG,"haha")
 
         })
 
 
-        removePlayersButton.setOnClickListener(View.OnClickListener {
-            Log.d(TAG,"button REMOVE PLAYER was pressed")
-            Thread{
-                var a = db.playerDAO().showAllPlayers().toString()
-                Log.d(TAG,a)
-                db.playerDAO().deleteAllPlayers()
-                Log.d(TAG,"deleteAllPlayers() DONE")
-            }.start()
-        })
 
     }
 
 
-    private fun validateInput(db : AppDB): Boolean {
-        Log.d(TAG,"Validation started")
-        val name = textInputWord.editText!!.text.toString().trim()
 
+
+    private fun validateInput(name: String): Boolean {
+        Log.d(TAG,"Validation started")
         if (name.isEmpty()){
             textInputWord.error = "Field can not be empty"
             Log.d(TAG,"Validation not succesful")
@@ -134,6 +126,32 @@ class AddPlayerActivity : AppCompatActivity() {
             Log.d(TAG,"Validation succesful")
             return true
         }
+
+    }
+
+    private fun showAllPlayers(db: AppDB): String {
+        var output = "Players:"
+
+        Thread{
+            for(i in 0..playersInDb){
+                output = db.playerDAO().showAllPlayers()[i].name
+            }
+        }.start()
+
+        Log.d(TAG,output)
+
+        return output
+
+    }
+
+
+    private fun getNumberOfPlayersFromDb(db: AppDB): Int{
+        Thread{
+            playersInDb = db.playerDAO().showAllPlayers().size
+        }.start()
+        Log.d(TAG,"number of players in DB is : " + playersInDb)
+
+        return playersInDb
 
     }
 }

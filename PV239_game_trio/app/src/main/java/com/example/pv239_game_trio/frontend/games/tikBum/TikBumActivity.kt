@@ -36,7 +36,6 @@ class TikBumActivity : AppCompatActivity() {
 
     private var timerRunning : Boolean = false
 
-    //private val timeLeftInMillis : Long = TIME_MILLIS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +43,6 @@ class TikBumActivity : AppCompatActivity() {
         Log.d(TAG,"TikBumActivity created")
         val db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
         createWords(db)
-        createPlayers(db)
-        //someTestDeleteLater(db)
 
 
         soundTikTok = MediaPlayer.create(this,R.raw.ticking_sound)
@@ -105,7 +102,6 @@ class TikBumActivity : AppCompatActivity() {
 
 
 
-                //TODO presmerovat do fragmentu hracovi dat dole body
 
             }
         }
@@ -150,44 +146,6 @@ class TikBumActivity : AppCompatActivity() {
             db.tikBumDAO().create(word5)
             db.tikBumDAO().create(word6)
             Log.d(TAG,"7 words created")
-
-        }.start()
-    }
-
-
-    private fun createPlayers(db: AppDB){
-        Thread {
-            var player1 = PlayerEntity()
-            player1.id = 0
-            player1.name = "Peter"
-            player1.points = 0
-
-
-            var player2 = PlayerEntity()
-            player2.id = 1
-            player2.name = "Marcel"
-            player2.points = 0
-
-
-            var player3 = PlayerEntity()
-            player3.id = 2
-            player3.name = "Jitka"
-            player3.points = 0
-
-
-            var player4 = PlayerEntity()
-            player4.id = 3
-            player4.name = "Sara"
-            player4.points = 0
-
-
-
-            db.playerDAO().create(player1)
-            db.playerDAO().create(player2)
-            db.playerDAO().create(player3)
-            db.playerDAO().create(player4)
-
-            Log.d(TAG,"4 players created")
 
         }.start()
     }

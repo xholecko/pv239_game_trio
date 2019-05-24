@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioMainActivity"
 
-
     private lateinit var  startActivityButton: Button
     private lateinit var  addPlayerButton: Button
     private lateinit var  removeTeamButton: Button
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var  infoText: TextView
     private lateinit var  teams: TextView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         createPlayers(db)
 
         addPlayerButton = findViewById(R.id.button_add)
-
 
         startActivityButton = findViewById(R.id.button_start)
         removeTeamButton = findViewById(R.id.button_remove_player)
@@ -130,25 +127,25 @@ class MainActivity : AppCompatActivity() {
     private fun createPlayers(db: AppDB){
         Thread {
             var player1 = PlayerEntity()
-            player1.id = 0
+            //player1.id = 0
             player1.name = "Peter"
             player1.points = 0
 
 
             var player2 = PlayerEntity()
-            player2.id = 1
+            //player2.id = 1
             player2.name = "Marcel"
             player2.points = 0
 
 
             var player3 = PlayerEntity()
-            player3.id = 2
+            //player3.id = 2
             player3.name = "Jitka"
             player3.points = 0
 
 
             var player4 = PlayerEntity()
-            player4.id = 3
+            //player4.id = 3
             player4.name = "Sara"
             player4.points = 0
 
@@ -163,6 +160,8 @@ class MainActivity : AppCompatActivity() {
 
         }.start()
     }
+
+
 
 }
 
