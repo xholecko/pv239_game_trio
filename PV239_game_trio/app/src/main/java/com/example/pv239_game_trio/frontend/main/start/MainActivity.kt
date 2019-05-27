@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.frontend.main.ChooseGameActivity
 
 class MainActivity : AppCompatActivity() {
@@ -26,15 +25,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  resetPointsButton: Button
 
     private lateinit var  infoText: TextView
-    private lateinit var  teams: TextView
+    private lateinit var  playersTextView: TextView
+    private lateinit var db : AppDB
+    private var playersInDb : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_fragment)
+        setContentView(R.layout.activity_main)
         Log.d(TAG,"onCreate()")
 
-        val db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
-        createPlayers(db)
+        db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
         addPlayerButton = findViewById(R.id.button_add)
 
@@ -44,7 +44,17 @@ class MainActivity : AppCompatActivity() {
         resetPointsButton = findViewById(R.id.button_reset_points)
 
         infoText = findViewById(R.id.textView_info)
-        teams = findViewById(R.id.textView_players)
+        playersTextView = findViewById(R.id.textView_players)
+
+        Thread {
+            playersTextView.text = getAllPlayers()
+            if (db.playerDAO().showAllPlayers().size >= 6){
+                addPlayerButton.visibility = View.INVISIBLE
+            }
+        }.start()
+
+
+
 
         addPlayerButton.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"button ADD PLAYER was pressed")
@@ -92,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                 Thread{
                     db.playerDAO().deleteAllPlayers()
                     Log.d(TAG,"deleteAllPlayers() DONE")
+                    openActivityMain()
                 }.start()
             }
             builder.setNegativeButton("No"){dialog, which ->
@@ -120,48 +131,29 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, RemovePlayerActivity::class.java)
         startActivity(intent)
     }
-
-
-
-
-    private fun createPlayers(db: AppDB){
-        Thread {
-            var player1 = PlayerEntity()
-            //player1.id = 0
-            player1.name = "Peter"
-            player1.points = 0
-
-
-            var player2 = PlayerEntity()
-            //player2.id = 1
-            player2.name = "Marcel"
-            player2.points = 0
-
-
-            var player3 = PlayerEntity()
-            //player3.id = 2
-            player3.name = "Jitka"
-            player3.points = 0
-
-
-            var player4 = PlayerEntity()
-            //player4.id = 3
-            player4.name = "Sara"
-            player4.points = 0
-
-
-
-            db.playerDAO().create(player1)
-            db.playerDAO().create(player2)
-            db.playerDAO().create(player3)
-            db.playerDAO().create(player4)
-
-            Log.d(TAG,"4 players created")
-
-        }.start()
+    private fun openActivityMain(){
+        val intent = Intent(this, MainActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 
 
 
+
+    private fun getAllPlayers(): String {
+        var output = "Players: "
+
+        playersInDb = db.playerDAO().showAllPlayers().size
+        Log.d(TAG, "Players in DB = " + playersInDb)
+
+
+        for(i in 0 until playersInDb){
+            output = output + db.playerDAO().showAllPlayers()[i].name + " "
+            Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
+
+        }
+
+        return output
+    }
 }
 

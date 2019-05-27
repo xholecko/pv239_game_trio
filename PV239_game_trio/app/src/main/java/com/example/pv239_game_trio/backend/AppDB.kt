@@ -22,7 +22,8 @@ abstract class AppDB : RoomDatabase() {
                 INSTANCE = Room.databaseBuilder(
                     context.applicationContext,
                     AppDB::class.java,
-                    "app-database.db")
+                    "app-database.db"
+                )
                     .build()
             }
             return INSTANCE as AppDB

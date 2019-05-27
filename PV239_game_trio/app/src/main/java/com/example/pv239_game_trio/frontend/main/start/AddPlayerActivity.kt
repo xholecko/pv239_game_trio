@@ -1,5 +1,6 @@
 package com.example.pv239_game_trio.frontend.main.start
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.backend.dto.PlayerDTO
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.google.android.material.textfield.TextInputLayout
 
@@ -22,19 +22,30 @@ class AddPlayerActivity : AppCompatActivity() {
     private lateinit var  playersTextView: TextView
     lateinit var mRecyclerView: RecyclerView
     lateinit var textInputWord: TextInputLayout
-    private var playersInDb = 0
+    private var playersInDb : Int = 0
+
+    private lateinit var db : AppDB
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_player)
         Log.d(TAG,"onCreate()")
 
-        val db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
-        //playersInDb = getNumberOfPlayersFromDb(db)
+        db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
+
+
+        Thread{
+            playersInDb = db.playerDAO().showAllPlayers().size
+        }.start()
+
+        Log.d(TAG, "Players in DB = " + playersInDb)
+
+        //playersInDb = db.playerDAO().showAllPlayers().size
 
         playersTextView = findViewById(R.id.textView_players)
 
-        playersTextView.text = showAllPlayers(db)
+        //playersTextView.text = showAllPlayers(db)
 
 
         textInputWord = findViewById(R.id.input)
@@ -46,6 +57,7 @@ class AddPlayerActivity : AppCompatActivity() {
 
         addPlayerButton.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"button AddPlayer was pressed")
+
             var name = textInputWord.editText!!.text.toString().trim()
 
             if (validateInput(name)){
@@ -62,36 +74,36 @@ class AddPlayerActivity : AppCompatActivity() {
                         dbValidation = "nameProblem"
                     }
 
-                    if (db.playerDAO().showAllPlayers().size >= 6){
-                        Log.d(TAG,"Max number of players is 6")
+                    if (playersInDb >= 6){
+                        Log.d(TAG,"Max number of players is 6 and you currently have " + playersInDb)
                         dbValidation = "sizeProblem"
                     }
 
                     if (dbValidation == "ok"){
                         var player = PlayerEntity()
-                        player.id = db.playerDAO().showAllPlayers().size
+                        //player.id = playersInDb + 1
                         player.name = name
                         player.points = 0
                         db.playerDAO().create(player)
 
                         Log.d(TAG,"Player was created")
-                        val a = db.playerDAO().findPlayerById(player.id)
-                        val playerDTO = PlayerDTO()
-                        playerDTO.id = a.id
-                        playerDTO.name = a.name
-                        playerDTO.points = a.points
-                        Log.d(TAG,playerDTO.toString())
+                        val a = db.playerDAO().findPlayerByName(player.name)
+                        Log.d(TAG,"Name= " + a.name + " Points= "+  a.points + " Id= " + a.id)
                         playersInDb += 1
                         Log.d(TAG,"number of players in DB is : " + playersInDb)
-                        showAllPlayers(db)
+                        //getAllPlayers(db)
+                        openActivityMain()
+
                     }
 
                 }.start()
-                    if (dbValidation == "sizeProblem"){
+
+                if (dbValidation == "sizeProblem"){
                         textInputWord.error = "Max number of players is 6"
                     }
 
-                    if (dbValidation == "nameProblem") {
+
+                if (dbValidation == "nameProblem") {
                         textInputWord.error = "There is already player with the same name"
                     }
 
@@ -129,29 +141,37 @@ class AddPlayerActivity : AppCompatActivity() {
 
     }
 
-    private fun showAllPlayers(db: AppDB): String {
+    private fun getAllPlayers(): String {
         var output = "Players:"
 
-        Thread{
-            for(i in 0..playersInDb){
-                output = db.playerDAO().showAllPlayers()[i].name
-            }
-        }.start()
 
+        for(i in 1..playersInDb + 1){
+            output = db.playerDAO().showAllPlayers()[i].name
+            Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
+
+        }
         Log.d(TAG,output)
 
         return output
 
+
     }
 
+//
+//    private fun getNumberOfPlayersFromDb(db: AppDB): Int{
+//        Thread{
+//            playersInDb = db.playerDAO().showAllPlayers().size
+//        }.start()
+//        Log.d(TAG,"number of players in DB is : " + playersInDb)
+//
+//        return playersInDb
+//
+//    }
 
-    private fun getNumberOfPlayersFromDb(db: AppDB): Int{
-        Thread{
-            playersInDb = db.playerDAO().showAllPlayers().size
-        }.start()
-        Log.d(TAG,"number of players in DB is : " + playersInDb)
 
-        return playersInDb
 
+    private fun openActivityMain(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
