@@ -3,12 +3,17 @@
           package="com.example.pv239_game_trio">
 
     <application
+            android:name=".backend.App"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".frontend.main.start.RemovePlayerActivity">
+        </activity>
+        <activity android:name=".frontend.main.start.AddPlayerActivity">
+        </activity>
         <activity android:name=".frontend.main.ChooseGameActivity">
         </activity>
         <activity android:name=".frontend.games.tikBum.TikBumActivity">

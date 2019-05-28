@@ -13,28 +13,12 @@ interface TikBumDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun create(word: TikBumEntity)
 
-
-    /**
-     * Update a word in database.
-     * @param word to be updated.
-     */
-    @Update
-    fun update(word: TikBumEntity)
-
-
     /**
      * Delete word from database.
      * @param word to be deleted.
      */
     @Delete
     fun delete(word: TikBumEntity)
-
-
-    /**
-     * @return list of all words from database.
-     */
-    @Query("select * from TikBumEntity")
-    fun showAllWords() : List<TikBumEntity>
 
 
     /**

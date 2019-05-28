@@ -19,17 +19,17 @@
     <string name="guess_the_word">Guess the word</string>
     <string name="current_high_score">current_high_score</string>
 
-    <string name="add">Add team</string>
+    <string name="add">Add player</string>
     <string name="info_add_activity">Current teams</string>
-    <string name="players">Teams</string>
+    <string name="players">Players</string>
     <string name="start">Start</string>
     <string name="restart">Restart Game</string>
-    <string name="remove">Remove team</string>
+    <string name="remove">Remove player</string>
     <string name="score">Score</string>
     <string name="name">Name</string>
-    <string name="hint">Name of the team</string>
+    <string name="hint">Name of the player</string>
 
-    <string name="teams">Teams</string>
+    <string name="teams">Players</string>
 
 
     <string name="tick">Tick</string>

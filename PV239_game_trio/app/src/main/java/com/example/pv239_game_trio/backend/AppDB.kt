@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.pv239_game_trio.backend.dao.TeamDAO
+import com.example.pv239_game_trio.backend.dao.PlayerDAO
 import com.example.pv239_game_trio.backend.dao.TikBumDAO
-import com.example.pv239_game_trio.backend.entities.TeamEntity
+import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.backend.entities.TikBumEntity
 
-@Database (entities = [TeamEntity::class,TikBumEntity::class],version = 2)
+@Database (entities = [PlayerEntity::class,TikBumEntity::class],version = 2)
 abstract class AppDB : RoomDatabase() {
 
-    abstract fun playerDAO() : TeamDAO
+    abstract fun playerDAO() : PlayerDAO
     abstract fun tikBumDAO() : TikBumDAO
 
     companion object {
@@ -22,7 +22,8 @@ abstract class AppDB : RoomDatabase() {
                 INSTANCE = Room.databaseBuilder(
                     context.applicationContext,
                     AppDB::class.java,
-                    "app-database.db")
+                    "app-database.db"
+                )
                     .build()
             }
             return INSTANCE as AppDB
