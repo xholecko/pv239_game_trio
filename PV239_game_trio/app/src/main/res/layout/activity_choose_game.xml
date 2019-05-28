@@ -30,6 +30,6 @@
         <Button
                 android:text="@string/score"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/Score"/>
+                android:layout_height="wrap_content" android:id="@+id/score"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

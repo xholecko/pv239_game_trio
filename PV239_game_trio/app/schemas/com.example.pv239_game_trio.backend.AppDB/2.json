@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "a34fa8622e1e51b4d518343ebef3db8b",
+    "identityHash": "d761d7cfd5f3dea6e5e0075e73ea8ab3",
     "entities": [
       {
         "tableName": "PlayerEntity",
@@ -69,7 +69,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "ActivityEntity",
+        "tableName": "CharadeEntity",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `text` TEXT NOT NULL)",
         "fields": [
           {
@@ -98,7 +98,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a34fa8622e1e51b4d518343ebef3db8b\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d761d7cfd5f3dea6e5e0075e73ea8ab3\")"
     ]
   }
 }

@@ -11,6 +11,7 @@ import com.example.pv239_game_trio.frontend.games.charade.CharadeActivity
 import com.example.pv239_game_trio.frontend.games.hangman.HangmanActivity
 import com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity
 import com.example.pv239_game_trio.frontend.games.tikBum.TikBumAddPointsActivity
+import com.example.pv239_game_trio.frontend.main.start.ScoreActivity
 
 class ChooseGameActivity : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class ChooseGameActivity : AppCompatActivity() {
     private lateinit var  buttonCharade: Button
     private lateinit var  buttonHangman: Button
     private lateinit var  buttonTikBum: Button
+    private lateinit var  buttonScore: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,7 @@ class ChooseGameActivity : AppCompatActivity() {
         buttonCharade = findViewById(R.id.charade)
         buttonHangman = findViewById(R.id.hangman)
         buttonTikBum = findViewById(R.id.tikBum)
+        buttonScore = findViewById(R.id.score)
 
 
         buttonCharade.setOnClickListener {
@@ -45,6 +48,10 @@ class ChooseGameActivity : AppCompatActivity() {
             Log.d(TAG,"button TIKBUM was pressed")
             openActivityTikBum()
         }
+        buttonScore.setOnClickListener {
+            Log.d(TAG,"button TIKBUM was pressed")
+            openActivityScore()
+        }
 
     }
 
@@ -60,6 +67,10 @@ class ChooseGameActivity : AppCompatActivity() {
 
     private fun openActivityTikBum(){
         val intent = Intent(this, TikBumActivity::class.java)
+        startActivity(intent)
+    }
+    private fun openActivityScore(){
+        val intent = Intent(this, ScoreActivity::class.java)
         startActivity(intent)
     }
 }
