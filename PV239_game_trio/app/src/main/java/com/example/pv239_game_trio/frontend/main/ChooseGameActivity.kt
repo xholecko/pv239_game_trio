@@ -10,6 +10,7 @@ import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.frontend.games.charade.CharadeActivity
 import com.example.pv239_game_trio.frontend.games.hangman.HangmanActivity
 import com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity
+import com.example.pv239_game_trio.frontend.games.tikBum.TikBumAddPointsActivity
 
 class ChooseGameActivity : AppCompatActivity() {
 
@@ -58,7 +59,7 @@ class ChooseGameActivity : AppCompatActivity() {
     }
 
     private fun openActivityTikBum(){
-        val intent = Intent(this, TikBumActivity::class.java)
+        val intent = Intent(this, TikBumAddPointsActivity::class.java)
         startActivity(intent)
     }
 }

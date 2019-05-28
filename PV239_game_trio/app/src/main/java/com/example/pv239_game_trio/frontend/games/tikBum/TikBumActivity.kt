@@ -1,5 +1,6 @@
 package com.example.pv239_game_trio.frontend.games.tikBum
 
+import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -54,7 +55,6 @@ class TikBumActivity : AppCompatActivity() {
         positionTextView = findViewById(R.id.TextView_position)
 
 
-        //TODO
         buttonStart.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"button buttonStart was pressed")
             val randomTime = (TIME_MILLIS_DOWN_LIMIT..TIME_MILLIS_UP_LIMIT).shuffled().first()
@@ -94,23 +94,23 @@ class TikBumActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                buttonStart.visibility = View.VISIBLE
                 timerRunning = false
-                //soundTikTok.isLooping = false
+                buttonStart.visibility = View.VISIBLE
                 soundTikTok.stop()
                 soundBoom.start()
-
-
-
+                openActivityAddPoints()
+                //soundTikTok.isLooping = false
 
             }
         }
         timer.start()
     }
 
-    //open in Thread
-    private fun addPoints(id: Int){
-        db.playerDAO().addPointsToAllButOneById(id,1)
+
+
+    private fun openActivityAddPoints(){
+        val intent = Intent(this, TikBumAddPointsActivity::class.java)
+        startActivity(intent)
     }
 
 

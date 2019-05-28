@@ -26,7 +26,6 @@ class AddPlayerActivity : AppCompatActivity() {
 
     private lateinit var db : AppDB
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_player)
@@ -156,19 +155,6 @@ class AddPlayerActivity : AppCompatActivity() {
 
 
     }
-
-//
-//    private fun getNumberOfPlayersFromDb(db: AppDB): Int{
-//        Thread{
-//            playersInDb = db.playerDAO().showAllPlayers().size
-//        }.start()
-//        Log.d(TAG,"number of players in DB is : " + playersInDb)
-//
-//        return playersInDb
-//
-//    }
-
-
 
     private fun openActivityMain(){
         val intent = Intent(this, MainActivity::class.java)
