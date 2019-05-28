@@ -8,27 +8,37 @@
         tools:context=".frontend.main.ChooseGameActivity">
 
     <TextView
-            android:text="HAAAAAAAA"
+            android:text="Test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/text_activity_word"
+            android:id="@+id/text_charade_word"
             android:textSize="30sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"
+            android:textColor="#0000FF"
+            android:textStyle="italic"
             android:textAlignment="center"/>
 
     <TextView
-            android:text="HAAAAAAAA"
+            android:text="TEST"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/text_activity_type"
+            android:id="@+id/text_charade_type"
             android:textSize="30sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
             android:textAlignment="center"/>
 
     <TextView
-            android:text="HAAAAAAAA"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/activity_countdown"
-            android:textSize="30sp"
+            android:id="@+id/charade_countdown"
+            android:textSize="100sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
             android:textAlignment="center"/>
 
     <Button

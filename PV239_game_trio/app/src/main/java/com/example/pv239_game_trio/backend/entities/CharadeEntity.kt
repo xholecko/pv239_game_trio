@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class ActivityEntity (
+data class CharadeEntity (
 
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,

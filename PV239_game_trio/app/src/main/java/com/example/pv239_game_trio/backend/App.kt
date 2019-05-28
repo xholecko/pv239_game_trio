@@ -3,12 +3,35 @@ package com.example.pv239_game_trio.backend
 import android.app.Application
 import android.util.Log
 import androidx.room.Room
+import com.example.pv239_game_trio.backend.entities.CharadeEntity
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.backend.entities.TikBumEntity
 
 class App : Application() {
     private val TAG = "GameTrioApp"
 
+    private val WORDS = setOf("Elephant", "Mole's hill", "Rebellion", "Guitar", "Chimpanzee",
+        "The Sword in the Stone", "The Magic Carpet", "Car", "Human", "Apple", "Vegetables",
+        "Helicopter", "Card", "Japan", "France", "Brazil", "Germany", "Hercules", "Window",
+        "Computer", "Calculator", "Exam", "Knights of the Round Table", "Banana", "Tomato",
+        "Hero", "Villain", "Movie", "Deer", "Firefighter", "Giraffe", "Archer", "Nightmare",
+        "House", "Mountain", "Cloud", "Water", "Town", "City", "Nightmare", "Airplane",
+        "Venture", "Murmur", "Password", "Procrastinate", "Teach", "Sleep", "Write", "Show",
+        "Present", "Give", "Relax", "Shave", "Keyboard", "Yell", "Paddle", "Bunny", "Photograph",
+        "Crawl", "Scold", "Skull", "The One Ring", "Dragon", "Wizard", "Warrior", "Cleric",
+        "Bear's lair", "Eagle's nest", "The Chosen One", "Spaceship", "Village", "Hope",
+        "Fellowship", "Betrayal", "Sacrifice", "Emperor", "Elf", "Dwarf", "Ninja", "Tiger",
+        "Lion", "Dinosaur", "Shark", "Okapi", "Panda", "Policeman", "Tailor", "Salesman",
+        "Driver", "Bus", "Wolf", "Video game", "Servant", "Magic", "Legend", "Flamingo", "Jewel",
+        "Question", "Activity", "Charade", "Pelican", "Space", "Brain", "Tusk", "Hand", "Leg",
+        "Mouth", "Eye", "Ear", "Horse", "Bone", "Brave", "Big", "Small", "Hilarious", "Funny",
+        "Sexy", "Smart", "Tall", "Short", "Hot", "Cold", "Warm", "Ladder", "Chaos", "Taxi",
+        "Fan", "Wipe", "Flute", "Chair", "Table", "Punch", "Disorganized", "Conversation",
+        "Accept", "Planet", "Start", "Galaxy", "Vandalize", "Shore", "Machine", "Old", "Young",
+        "Walking a dog", "Surfing a wave", "Listening a music", "Playing a video game",
+        "Painting a picture", "Delivering mail", "Mowing a lawn", "Climbing a mountain",
+        "Watching movie", "Sorting mail", "Ordering food", "Washing a car", "Visiting the zoo",
+        "Playing the basketball", "Operating on a patient", "Arranging flowers", "King", "Mace")
 
 
     override fun onCreate() {
@@ -18,6 +41,7 @@ class App : Application() {
 
         //createPlayers(db)
         createWords(db)
+        createCharades(db)
     }
 
 
@@ -77,5 +101,30 @@ class App : Application() {
             Log.d(TAG,"7 words created")
 
         }.start()
+    }
+
+    private fun createCharades(db : AppDB) {
+        Thread {
+            var insertedWords = mutableSetOf<String>()
+            for (word in WORDS) {
+                if (insertedWords.contains(word)) {
+                    continue
+                }
+
+                var charade = CharadeEntity()
+                charade.text = word
+
+                db.charadeDAO().create(charade)
+                insertedWords.add(word)
+            }
+        }.start()
+
+        /*
+        Thread {
+            var charade = CharadeEntity()
+            charade.text = "IT WORKS!!(MUHAHAHA)"
+            db.charadeDAO().create(charade)
+        }.start()
+        */
     }
 }
