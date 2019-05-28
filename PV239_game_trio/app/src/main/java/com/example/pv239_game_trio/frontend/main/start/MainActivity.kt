@@ -54,6 +54,10 @@ class MainActivity : AppCompatActivity() {
             if (db.playerDAO().showAllPlayers().size == 0){
                 removePlayerButton.visibility = View.INVISIBLE
             }
+            if(db.playerDAO().showAllPlayers().size < 2){
+                removePlayerButton.visibility = View.INVISIBLE
+
+            }
         }.start()
 
 
