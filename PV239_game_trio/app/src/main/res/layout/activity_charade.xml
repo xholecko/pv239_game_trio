@@ -8,7 +8,7 @@
         tools:context=".frontend.main.ChooseGameActivity">
 
     <TextView
-            android:text="Test"
+            android:text="Charade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/text_charade_word"
@@ -20,7 +20,7 @@
             android:textAlignment="center"/>
 
     <TextView
-            android:text="TEST"
+            android:text="DESRIPTION"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/text_charade_type"

@@ -1,5 +1,6 @@
 package com.example.pv239_game_trio.frontend.games.charade
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -29,10 +30,7 @@ class CharadeActivity : AppCompatActivity() {
     private lateinit var countdown: TextView
 
     private lateinit var allCharades: List<CharadeEntity>
-
-    enum class CharadeType {
-        DESCRIPTION, DRAWING, PANTOMIME
-    }
+    private lateinit var generatedCharade: Pair<CharadeEntity, CharadeType>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,9 +57,9 @@ class CharadeActivity : AppCompatActivity() {
     }
 
     private fun updateToNewCharade() {
-        var charade : Pair<CharadeEntity, CharadeType> = generateCharade()
-        charadeText.text = charade.first.text
-        charadeType.text = charade.second.toString()
+        generatedCharade = generateCharade()
+        charadeText.text = generatedCharade.first.text
+        charadeType.text = generatedCharade.second.toString()
         countdown.text = "60"
     }
 
@@ -87,13 +85,24 @@ class CharadeActivity : AppCompatActivity() {
             override fun onFinish() {
                 buttonStart.visibility = View.VISIBLE
                 timerRunning = false
+                openActivityAddPoints()
             }
         }
         timer.start()
     }
 
-    private fun addPoints(charadeActorId : Int, charadeResponderId : Int) {
-        db.playerDAO().addPointsById(charadeActorId, 1)
-        db.playerDAO().addPointsById(charadeResponderId, 1)
+    private fun openActivityAddPoints(){
+        val intent = Intent(this, CharadeAddPointsActivity::class.java)
+        intent.putExtra("CharadeText",getCharadeTextAsString())
+        intent.putExtra("CharadeType",getCharadeTypeAsString())
+        startActivity(intent)
+    }
+
+    private fun getCharadeTextAsString(): String {
+        return charadeText.text.toString()
+    }
+
+    private fun getCharadeTypeAsString(): String {
+        return charadeType.text.toString()
     }
 }
