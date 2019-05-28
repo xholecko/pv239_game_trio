@@ -31,10 +31,13 @@
 
     <string name="teams">Players</string>
 
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 
     <string name="tick">Tick</string>
     <string name="tickTock">TickTock</string>
     <string name="boom">Boom</string>
+    <string name="looser">Choose player who lost the game</string>
 
 
     <string name="reset_points">Reset points</string>

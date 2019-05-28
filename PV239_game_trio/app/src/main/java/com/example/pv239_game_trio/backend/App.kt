@@ -40,7 +40,7 @@ class App : Application() {
     private fun createWords(db: AppDB){
         Thread {
             var word0 = TikBumEntity()
-            word0.id = 7
+            word0.id = 0
             word0.word = "lol"
 
             var word1 = TikBumEntity()

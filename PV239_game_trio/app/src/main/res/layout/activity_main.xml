@@ -18,8 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_add"
-                android:visibility="visible"
-                tools:visibility="visible"/>
+                />
         <Button
                 android:text="@string/remove"
                 android:layout_width="match_parent"

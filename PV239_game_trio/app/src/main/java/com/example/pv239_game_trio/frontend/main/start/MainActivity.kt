@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var  startActivityButton: Button
     private lateinit var  addPlayerButton: Button
-    private lateinit var  removeTeamButton: Button
+    private lateinit var  removePlayerButton: Button
     private lateinit var  restartGameButton: Button
     private lateinit var  resetPointsButton: Button
 
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         addPlayerButton = findViewById(R.id.button_add)
 
         startActivityButton = findViewById(R.id.button_start)
-        removeTeamButton = findViewById(R.id.button_remove_player)
+        removePlayerButton = findViewById(R.id.button_remove_player)
         restartGameButton = findViewById(R.id.button_restart_game)
         resetPointsButton = findViewById(R.id.button_reset_points)
 
@@ -50,6 +50,9 @@ class MainActivity : AppCompatActivity() {
             playersTextView.text = getAllPlayers()
             if (db.playerDAO().showAllPlayers().size >= 6){
                 addPlayerButton.visibility = View.INVISIBLE
+            }
+            if (db.playerDAO().showAllPlayers().size == 0){
+                removePlayerButton.visibility = View.INVISIBLE
             }
         }.start()
 
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             openActivityStartActivity()
         })
 
-        removeTeamButton.setOnClickListener(View.OnClickListener {
+        removePlayerButton.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"button REMOVE PLAYER was pressed")
             openActivityRemovePlayerActivity()
         })
@@ -148,7 +151,8 @@ class MainActivity : AppCompatActivity() {
 
 
         for(i in 0 until playersInDb){
-            output = output + db.playerDAO().showAllPlayers()[i].name + " "
+            output = output + "NAME = " + db.playerDAO().showAllPlayers()[i].name +
+                    " POINTS = " + db.playerDAO().showAllPlayers()[i].points + ","
             Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
 
         }
