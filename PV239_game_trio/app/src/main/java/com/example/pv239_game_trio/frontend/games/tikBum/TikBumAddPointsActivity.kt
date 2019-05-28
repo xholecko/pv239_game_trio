@@ -87,4 +87,10 @@ class TikBumAddPointsActivity : AppCompatActivity() {
         val intent = Intent(this, TikBumActivity::class.java)
         startActivity(intent)
     }
+
+    fun checkButton(v: View) {
+        val radioId = radioGroup.checkedRadioButtonId
+        Log.d(TAG,radioId.toString())
+        radioButton = findViewById(radioId)
+    }
 }

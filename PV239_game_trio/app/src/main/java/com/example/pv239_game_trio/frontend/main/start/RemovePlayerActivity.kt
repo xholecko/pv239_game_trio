@@ -92,8 +92,6 @@ class RemovePlayerActivity : AppCompatActivity() {
         buttonCancel.setOnClickListener(View.OnClickListener {
             openActivityMain()
         })
-
-
     }
 
     //https://www.youtube.com/watch?v=fwSJ1OkK304

@@ -59,7 +59,7 @@ class ChooseGameActivity : AppCompatActivity() {
     }
 
     private fun openActivityTikBum(){
-        val intent = Intent(this, TikBumAddPointsActivity::class.java)
+        val intent = Intent(this, TikBumActivity::class.java)
         startActivity(intent)
     }
 }
