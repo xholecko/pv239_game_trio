@@ -16,7 +16,7 @@ class App : Application() {
         Log.d(TAG,"onCreate()")
         val db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
-        createPlayers(db)
+        //createPlayers(db)
         createWords(db)
     }
 
@@ -32,7 +32,7 @@ class App : Application() {
 
             db.playerDAO().create(player1)
 
-            Log.d(TAG,"2 players created")
+            Log.d(TAG,"1 player created")
 
         }.start()
     }

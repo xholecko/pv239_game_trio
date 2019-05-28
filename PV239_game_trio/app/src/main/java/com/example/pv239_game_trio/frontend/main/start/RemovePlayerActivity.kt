@@ -44,7 +44,7 @@ class RemovePlayerActivity : AppCompatActivity() {
 
 
     }
-    
+
     //https://www.youtube.com/watch?v=fwSJ1OkK304
     fun checkButton(v: View) {
         val radioId = radioGroup.checkedRadioButtonId
