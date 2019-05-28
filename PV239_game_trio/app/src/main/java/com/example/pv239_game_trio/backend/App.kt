@@ -28,7 +28,7 @@ class App : Application() {
         "Sexy", "Smart", "Tall", "Short", "Hot", "Cold", "Warm", "Ladder", "Chaos", "Taxi",
         "Fan", "Wipe", "Flute", "Chair", "Table", "Punch", "Disorganized", "Conversation",
         "Accept", "Planet", "Start", "Galaxy", "Vandalize", "Shore", "Machine", "Old", "Young",
-        "Walking a dog", "Surfing a wave", "Listening a music", "Playing a video game",
+        "Walking a dog", "Surfing a wave", "Listening to a music", "Playing a video game",
         "Painting a picture", "Delivering mail", "Mowing a lawn", "Climbing a mountain",
         "Watching movie", "Sorting mail", "Ordering food", "Washing a car", "Visiting the zoo",
         "Playing the basketball", "Operating on a patient", "Arranging flowers", "King", "Mace")

@@ -38,7 +38,10 @@
     <string name="tickTock">TickTock</string>
     <string name="boom">Boom</string>
     <string name="looser">Choose player who lost the game</string>
+    <string name="winners">Choose players who won the game</string>
 
+
+    <string name="new_charade">Next charade</string>
 
     <string name="reset_points">Reset points</string>
 
