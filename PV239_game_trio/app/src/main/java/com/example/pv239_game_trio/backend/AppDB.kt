@@ -4,16 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.pv239_game_trio.backend.dao.CharadeDAO
 import com.example.pv239_game_trio.backend.dao.PlayerDAO
 import com.example.pv239_game_trio.backend.dao.TikBumDAO
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.backend.entities.TikBumEntity
+import com.example.pv239_game_trio.backend.entities.CharadeEntity
 
-@Database (entities = [PlayerEntity::class,TikBumEntity::class],version = 2)
+
+@Database (entities = [PlayerEntity::class,TikBumEntity::class,CharadeEntity::class],version = 2)
 abstract class AppDB : RoomDatabase() {
 
     abstract fun playerDAO() : PlayerDAO
     abstract fun tikBumDAO() : TikBumDAO
+    abstract fun charadeDAO() : CharadeDAO
 
     companion object {
         private var INSTANCE: AppDB? = null
