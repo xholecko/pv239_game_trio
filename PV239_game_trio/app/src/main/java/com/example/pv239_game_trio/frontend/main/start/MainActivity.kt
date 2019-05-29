@@ -66,10 +66,13 @@ class MainActivity : AppCompatActivity() {
     private fun displayPlayers() {
         playersTextView.text = getAllPlayers(players)
         if (players.size >= 6) {
-            addPlayerButton.visibility = View.INVISIBLE
+            addPlayerButton.isEnabled = false
         }
         if (players.isEmpty()) {
-            removePlayerButton.visibility = View.INVISIBLE
+            removePlayerButton.isEnabled = false
+        }
+        if (players.size < 2){
+            startActivityButton.isEnabled = false
         }
     }
 

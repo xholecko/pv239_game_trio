@@ -11,15 +11,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".frontend.games.charade.CharadeAddPointsActivity"
-        android:parentActivityName=".frontend.main.ChooseGameActivity">
+                  android:parentActivityName=".frontend.main.ChooseGameActivity"></activity>
+        <activity android:name=".frontend.main.start.AddPlayerActivity"
+                  android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity android:name=".frontend.main.start.ScoreActivity">
         </activity>
         <activity android:name=".frontend.games.tikBum.TikBumAddPointsActivity">
         </activity>
-        <activity android:name=".frontend.main.start.RemovePlayerActivity">
-        </activity>
-        <activity android:name=".frontend.main.start.AddPlayerActivity">
+        <activity android:name=".frontend.main.start.RemovePlayerActivity"
+                  android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity android:name=".frontend.main.ChooseGameActivity"
         android:parentActivityName=".frontend.main.start.MainActivity">
