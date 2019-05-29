@@ -30,7 +30,6 @@ class CharadeAddPointsActivity : AppCompatActivity() {
     private lateinit var buttonAddPoints: Button
     private lateinit var buttonNewCharade: Button
 
-
     private lateinit var db : AppDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
