@@ -1,4 +1,4 @@
-package com.example.pv239_game_trio.games.hangman
+package com.example.pv239_game_trio.frontend.games.hangman
 
 import android.content.Context
 import android.graphics.Color
@@ -14,7 +14,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.app.NavUtils
+import androidx.room.Room
 import com.example.pv239_game_trio.R
+import com.example.pv239_game_trio.backend.AppDB
+import com.example.pv239_game_trio.frontend.main.start.MainActivity
 import java.util.*
 
 
@@ -38,8 +41,10 @@ class HangmanGameActivity : AppCompatActivity() {
     private var numChars: Int = 0
     private var numCorr: Int = 0
     private lateinit var scoreArray: Array<Int>
-    private var playerCount:Int = 0
+    private var playerCount:Int = 1
     private var currentPlayer = 0
+
+    private lateinit var db : AppDB
 
     private val TAG = "HangmanGame"
 
@@ -63,18 +68,26 @@ class HangmanGameActivity : AppCompatActivity() {
         bodyParts[4] = findViewById(R.id.leg1)
         bodyParts[5] = findViewById(R.id.leg2)
 
-        submitButton = this.findViewById(R.id.submit_button)
+        submitButton = findViewById(R.id.submit_button)
         currentPlayerScoreTextView = findViewById(R.id.current_player_score)
         currentPlayerTextView = findViewById(R.id.current_player)
         guess = findViewById(R.id.answer)
 
+        db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
         words = resources.getStringArray(R.array.words)
+//        Thread{
+//            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
+//            Log.d(TAG,words.toString())
+//        }.start()
+
         wordLayout = findViewById(R.id.word)
         currentWord = ""
         letters = findViewById(R.id.letters)
         letters.adapter = LetterAdapter(this)
+        Thread{
+            playerCount = db.playerDAO().showAllPlayers().size
+        }.start()
 
-        playerCount = intent.getIntExtra("playerCount",2)
         scoreArray = Array(playerCount){0}
 
     }
@@ -150,8 +163,11 @@ class HangmanGameActivity : AppCompatActivity() {
 
     private fun generateWord() {
         val rand = Random()
-        var newWord = words[rand.nextInt(words.size)]
-        while (newWord == currentWord) newWord = words[rand.nextInt(words.size)]
+        var newWord:String
+        do {
+            newWord = words[rand.nextInt(words.size)]
+        }
+        while (newWord == currentWord)
         currentWord = newWord
     }
 
@@ -227,7 +243,7 @@ class HangmanGameActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(com.example.pv239_game_trio.R.menu.main_hangman, menu)
+        menuInflater.inflate(R.menu.upper_bar_ingame, menu)
         return true
     }
 
@@ -241,26 +257,9 @@ class HangmanGameActivity : AppCompatActivity() {
                 showHelp()
                 return true
             }
-            R.id.action_show_current_high_score ->{
-                showScore()
-                return true
-            }
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun showScore() {
-        val helpBuild = AlertDialog.Builder(this)
-
-        helpBuild.setTitle("Scores")
-        var string = ""
-        scoreArray.forEach { string+=it.toString()+'\n' }
-        helpBuild.setMessage(string)
-        helpBuild.setPositiveButton("OK"){_,_->}
-
-        helpBuild.create()
-        helpBuild.show()
     }
 
     private fun showHelp() {
