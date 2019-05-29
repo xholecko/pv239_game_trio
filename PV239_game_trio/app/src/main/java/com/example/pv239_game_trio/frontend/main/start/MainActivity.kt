@@ -17,6 +17,7 @@ import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.frontend.main.ChooseActivity
+import com.example.pv239_game_trio.frontend.main.PlayersActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openActivityStartActivity() {
-        val intent = Intent(this, ChooseActivity::class.java)
+        val intent = Intent(this, PlayersActivity::class.java)
         startActivity(intent)
     }
 
