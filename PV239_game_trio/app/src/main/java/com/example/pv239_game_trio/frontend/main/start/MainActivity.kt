@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun getAllPlayers(): String {
+    private fun getAllPlayers(players: Array<PlayerEntity>): String {
         var output = ""
 
         playersInDb = players.size
@@ -114,8 +114,8 @@ class MainActivity : AppCompatActivity() {
 
 
         for(i in 0 until playersInDb){
-            output = output + db.playerDAO().showAllPlayers()[i].name + "\n"//" points = " + db.playerDAO().showAllPlayers()[i].points + "\n"
-            Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
+            output = output + players[i].name + "\n"//" points = " + db.playerDAO().showAllPlayers()[i].points + "\n"
+            Log.d(TAG, "Name= " + players[i].name + " Id= " + players[i].id)
 
 
         }
