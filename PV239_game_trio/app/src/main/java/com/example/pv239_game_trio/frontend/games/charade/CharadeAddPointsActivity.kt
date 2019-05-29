@@ -15,8 +15,6 @@ class CharadeAddPointsActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioAddPoints"
 
-    private lateinit var checkboxLayout: LinearLayout
-
     private lateinit var charadeText: TextView
     private lateinit var charadeType: TextView
 
@@ -40,7 +38,6 @@ class CharadeAddPointsActivity : AppCompatActivity() {
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
-        checkboxLayout = findViewById(R.id.checkboxLayout)
         textView = findViewById(R.id.text_view_selected)
         buttonAddPoints = findViewById(R.id.button_confirm)
         buttonNewCharade = findViewById(R.id.button_new_charade)
