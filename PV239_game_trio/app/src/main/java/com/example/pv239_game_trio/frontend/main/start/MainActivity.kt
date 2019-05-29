@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  startActivityButton: Button
     private lateinit var  addPlayerButton: Button
     private lateinit var  removePlayerButton: Button
-    private lateinit var  restartGameButton: Button
-    private lateinit var  resetPointsButton: Button
-
     private lateinit var  infoText: TextView
     private lateinit var  playersTextView: TextView
     private lateinit var db : AppDB
@@ -54,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             }
             if (db.playerDAO().showAllPlayers().isEmpty()){
                 removePlayerButton.visibility = View.INVISIBLE
+            }
+            if(db.playerDAO().showAllPlayers().size < 2){
+                removePlayerButton.visibility = View.INVISIBLE
+
             }
         }.start()
 
@@ -135,7 +136,10 @@ class MainActivity : AppCompatActivity() {
                     Thread{
                         db.playerDAO().resetPointAllPlayers()
                         Log.d(TAG,"resetPointAllTeams() DONE")
+
                     }.start()
+                    openActivityMain()
+
                 }
                 builder.setNegativeButton("No"){ _, _ ->
                     Log.d(TAG,"resetPointAllTeams() canceled by user")
@@ -153,8 +157,9 @@ class MainActivity : AppCompatActivity() {
                     Thread{
                         db.playerDAO().deleteAllPlayers()
                         Log.d(TAG,"deleteAllPlayers() DONE")
-                        openActivityMain()
                     }.start()
+                    openActivityMain()
+
                 }
                 builder.setNegativeButton("No"){ _, _ ->
                     Log.d(TAG,"deleteAllPlayers() canceled by user")

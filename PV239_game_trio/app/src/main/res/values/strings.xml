@@ -41,9 +41,12 @@
     <string name="winners">Choose players who won the game</string>
 
 
+    <string name="create_player_text">Create a player</string>
+
+
     <string name="new_charade">Next charade</string>
 
     <string name="reset_points">Reset points</string>
-    <string name="restart_games">Restart games</string>
+    <string name="restart_games">Restart game</string>
 
 </resources>
