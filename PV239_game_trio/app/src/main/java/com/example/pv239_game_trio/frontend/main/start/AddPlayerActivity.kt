@@ -48,7 +48,7 @@ class AddPlayerActivity : AppCompatActivity() {
         addPlayerButton.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"button AddPlayer was pressed")
 
-            var name = textInputWord.editText!!.text.toString().trim()
+            var name = textInputWord.editText!!.text.toString().toUpperCase().trim()
 
             if (validateInput(name)){
 

@@ -2,6 +2,7 @@ package com.example.pv239_game_trio.frontend.games.tikBum
 
 import android.content.Intent
 import android.media.MediaPlayer
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -16,6 +17,7 @@ import androidx.core.app.NavUtils
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
+import com.example.pv239_game_trio.backend.entities.TikBumEntity
 
 
 class TikBumActivity : AppCompatActivity() {
@@ -43,6 +45,10 @@ class TikBumActivity : AppCompatActivity() {
     private var timerRunning : Boolean = false
 
 
+    private var tikBumWord : TikBumEntity = TikBumEntity()
+
+    private var randomTime : Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tik_bum)
@@ -59,18 +65,15 @@ class TikBumActivity : AppCompatActivity() {
         wordTextView = findViewById(R.id.TextView_TikTak)
         positionTextView = findViewById(R.id.TextView_position)
 
+        getPlayerCountAsync().execute()
+
 
         buttonStart.setOnClickListener({
             Log.d(TAG,"button buttonStart was pressed")
-            val randomTime = (TIME_MILLIS_DOWN_LIMIT..TIME_MILLIS_UP_LIMIT).shuffled().first()
-            val randomWord = (1..7).shuffled().first()
-            Log.d(TAG,"Time is set to: " + randomTime + " millis")
+            randomTime = (TIME_MILLIS_DOWN_LIMIT..TIME_MILLIS_UP_LIMIT).shuffled().first()
+            wordTextView.text = tikBumWord.word.toUpperCase()
             positionTextView.text = getPosition().toUpperCase()
 
-            Thread{
-                val tikBumWord = db.tikBumDAO().findWordById(randomWord)
-                wordTextView.text = tikBumWord.word.toUpperCase()
-            }.start()
 
 
             startTimer(randomTime)
@@ -80,6 +83,21 @@ class TikBumActivity : AppCompatActivity() {
 
 
     }
+
+    private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
+        override fun doInBackground(vararg params: Void?) {
+            val randomWord = (1..7).shuffled().first()
+            //Log.d(TAG,"Time is set to: " + randomTime + " millis")
+            //positionTextView.text = getPosition().toUpperCase()
+            tikBumWord = db.tikBumDAO().findWordById(randomWord)
+
+        }
+
+        override fun onPostExecute(result: Unit?) {
+            //gameInit()
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.upper_bar_ingame, menu)
@@ -122,7 +140,7 @@ class TikBumActivity : AppCompatActivity() {
     }
 
     private fun getPosition() : String{
-        val positionString: MutableList<String> = mutableListOf<String>("Tick","TickTock","Boom")
+        val positionString: MutableList<String> = mutableListOf("Tick","TickTock","Boom")
         return positionString[(0..2).shuffled().first()]
 
     }

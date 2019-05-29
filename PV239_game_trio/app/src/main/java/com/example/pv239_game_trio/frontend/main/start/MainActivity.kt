@@ -23,16 +23,12 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioMainActivity"
 
-    private lateinit var startActivityButton: Button
-    private lateinit var addPlayerButton: Button
-    private lateinit var removePlayerButton: Button
-    private lateinit var restartGameButton: Button
-    private lateinit var resetPointsButton: Button
-
-    private lateinit var infoText: TextView
-    private lateinit var playersTextView: TextView
-    private lateinit var db: AppDB
-    private var playersInDb: Int = 0
+    private lateinit var  startActivityButton: Button
+    private lateinit var  addPlayerButton: Button
+    private lateinit var  removePlayerButton: Button
+    private lateinit var  playersTextView: TextView
+    private lateinit var db : AppDB
+    private var playersInDb : Int = 0
     private lateinit var players: Array<PlayerEntity>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,12 +43,9 @@ class MainActivity : AppCompatActivity() {
         startActivityButton = findViewById(R.id.button_start)
         removePlayerButton = findViewById(R.id.button_remove_player)
 
-        infoText = findViewById(R.id.textView_info)
         playersTextView = findViewById(R.id.textView_players)
 
         getPlayers().execute()
-
-
 
         addPlayerButton.setOnClickListener {
             Log.d(TAG, "button ADD PLAYER was pressed")
@@ -114,16 +107,16 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getAllPlayers(players: Array<PlayerEntity>): String {
-        var output = "Players: "
+        var output = ""
 
         playersInDb = players.size
         Log.d(TAG, "Players in DB = $playersInDb")
 
 
-        for (i in 0 until playersInDb) {
-            output = output + "NAME = " + players[i].name +
-                    " POINTS = " + players[i].points + ","
+        for(i in 0 until playersInDb){
+            output = output + players[i].name + "\n"//" points = " + db.playerDAO().showAllPlayers()[i].points + "\n"
             Log.d(TAG, "Name= " + players[i].name + " Id= " + players[i].id)
+
 
         }
 
