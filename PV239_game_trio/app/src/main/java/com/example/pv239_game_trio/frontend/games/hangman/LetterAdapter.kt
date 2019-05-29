@@ -1,4 +1,4 @@
-package com.example.pv239_game_trio.games.hangman
+package com.example.pv239_game_trio.frontend.games.hangman
 
 import android.content.Context
 import android.view.View
