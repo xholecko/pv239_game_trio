@@ -83,7 +83,6 @@ class CharadeActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                buttonStart.visibility = View.VISIBLE
                 timerRunning = false
                 openActivityAddPoints()
             }

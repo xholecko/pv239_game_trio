@@ -15,6 +15,8 @@
             android:layout_marginTop="50sp"
             android:textAlignment="center"
             android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
             android:padding="3sp" />
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,6 +32,7 @@
                     android:id="@+id/table_row_player_1"
                     android:layout_column="1"
                     android:textSize="30sp"
+                    android:textColor="#0000FF"
                     android:padding="3sp" />
             <TextView
                     android:id="@+id/table_row_points_1"
@@ -43,6 +46,7 @@
                     android:id="@+id/table_row_player_2"
                     android:layout_column="1"
                     android:textSize="30sp"
+                    android:textColor="#0000FF"
                     android:padding="3sp" />
             <TextView
                     android:id="@+id/table_row_points_2"
@@ -56,6 +60,7 @@
                     android:id="@+id/table_row_player_3"
                     android:layout_column="1"
                     android:textSize="30sp"
+                    android:textColor="#0000FF"
                     android:padding="3sp" />
             <TextView
                     android:id="@+id/table_row_points_3"
@@ -69,6 +74,7 @@
                     android:id="@+id/table_row_player_4"
                     android:layout_column="1"
                     android:textSize="30sp"
+                    android:textColor="#0000FF"
                     android:padding="3sp" />
             <TextView
                     android:id="@+id/table_row_points_4"
@@ -82,6 +88,7 @@
                     android:id="@+id/table_row_player_5"
                     android:layout_column="1"
                     android:textSize="30sp"
+                    android:textColor="#0000FF"
                     android:padding="3sp" />
             <TextView
                     android:id="@+id/table_row_points_5"
@@ -95,6 +102,7 @@
                     android:id="@+id/table_row_player_6"
                     android:layout_column="1"
                     android:textSize="30sp"
+                    android:textColor="#0000FF"
                     android:padding="3sp" />
             <TextView
                     android:id="@+id/table_row_points_6"
