@@ -76,11 +76,6 @@ class HangmanGameActivity : AppCompatActivity() {
         guess = findViewById(R.id.answer)
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
-        //words = resources.getStringArray(R.array.words)
-//        Thread{
-//            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
-//            Log.d(TAG,words.toString())
-//        }.start()
 
         wordLayout = findViewById(R.id.word)
         currentWord = ""
@@ -93,9 +88,10 @@ class HangmanGameActivity : AppCompatActivity() {
 
     private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
+            var players = db.playerDAO().showAllPlayers()
             words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
-            playerCount = db.playerDAO().showAllPlayers().size
-            scoreArray = Array(playerCount){0}
+            playerCount = players.size
+            scoreArray = players.map { t -> t.points }.toTypedArray()
         }
 
         override fun onPostExecute(result: Unit?) {
@@ -224,6 +220,8 @@ class HangmanGameActivity : AppCompatActivity() {
         updatePlayerInfo()
     }
 
+
+
     private fun displayEndGameDialog(title: String, message: String) {
         disableButtons()
         val build = AlertDialog.Builder(this)
@@ -238,6 +236,12 @@ class HangmanGameActivity : AppCompatActivity() {
         ) { _, _ -> this@HangmanGameActivity.finish() }
 
         build.show()
+
+        Thread{
+            for (i in 0 until playerCount){
+                db.playerDAO().addPointsById(i, scoreArray[i])
+            }
+        }.start()
     }
 
     private fun disableButtons() {
