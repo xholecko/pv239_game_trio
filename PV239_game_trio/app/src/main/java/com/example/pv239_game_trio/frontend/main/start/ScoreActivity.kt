@@ -1,5 +1,6 @@
 package com.example.pv239_game_trio.frontend.main.start
 
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ class ScoreActivity : AppCompatActivity() {
     private lateinit var db : AppDB
     private lateinit var players: Array<PlayerEntity>
     private lateinit var sortedPlayers: List<PlayerEntity>
+    private lateinit var table: TableLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +26,25 @@ class ScoreActivity : AppCompatActivity() {
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
-        var table: TableLayout = findViewById(R.id.table_score)
+        table = findViewById(R.id.table_score)
 
-        Thread {
+        updateTable().execute()
+    }
+
+    private inner class updateTable: AsyncTask<Void, Void, Unit>() {
+        override fun doInBackground(vararg params: Void?) {
             players = db.playerDAO().showAllPlayers()
             sortedPlayers = players.sortedWith(compareBy {it.points})
-        }.start()
+        }
 
+        override fun onPostExecute(result: Unit?) {
+            updateTableRows()
+        }
+    }
+
+    private fun updateTableRows() {
         for(i in 0 until table.childCount) {
-            if (sortedPlayers.size < i - 1) {
+            if (sortedPlayers.size == i) {
                 break
             }
 
