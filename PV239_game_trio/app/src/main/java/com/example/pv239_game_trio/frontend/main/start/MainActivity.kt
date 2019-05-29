@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             if (db.playerDAO().showAllPlayers().isEmpty()){
                 removePlayerButton.visibility = View.INVISIBLE
             }
-            if(db.playerDAO().showAllPlayers().size < 2){
+            if(db.playerDAO().showAllPlayers().size < 1){
                 removePlayerButton.visibility = View.INVISIBLE
             }
         }.start()
@@ -96,15 +96,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getAllPlayers(): String {
-        var output = "Players: "
+        var output = ""
 
         playersInDb = db.playerDAO().showAllPlayers().size
         Log.d(TAG, "Players in DB = $playersInDb")
 
 
         for(i in 0 until playersInDb){
-            output = output + "NAME = " + db.playerDAO().showAllPlayers()[i].name +
-                    " POINTS = " + db.playerDAO().showAllPlayers()[i].points
+            output = output + db.playerDAO().showAllPlayers()[i].name + "\n"//" points = " + db.playerDAO().showAllPlayers()[i].points + "\n"
             Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
 
         }
