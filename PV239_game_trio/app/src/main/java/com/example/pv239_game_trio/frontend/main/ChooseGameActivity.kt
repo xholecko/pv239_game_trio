@@ -4,13 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.frontend.games.charade.CharadeActivity
-import com.example.pv239_game_trio.frontend.games.hangman.HangmanActivity
+import com.example.pv239_game_trio.frontend.games.hangman.HangmanGameActivity
 import com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity
-import com.example.pv239_game_trio.frontend.games.tikBum.TikBumAddPointsActivity
 import com.example.pv239_game_trio.frontend.main.start.ScoreActivity
 
 class ChooseGameActivity : AppCompatActivity() {
@@ -61,7 +59,7 @@ class ChooseGameActivity : AppCompatActivity() {
     }
 
     private fun openActivityHangman(){
-        val intent = Intent(this, HangmanActivity::class.java)
+        val intent = Intent(this, HangmanGameActivity::class.java)
         startActivity(intent)
     }
 
