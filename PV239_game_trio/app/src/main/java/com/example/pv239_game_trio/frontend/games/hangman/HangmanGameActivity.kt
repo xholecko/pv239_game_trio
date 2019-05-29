@@ -2,6 +2,7 @@ package com.example.pv239_game_trio.frontend.games.hangman
 
 import android.content.Context
 import android.graphics.Color
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -57,8 +58,6 @@ class HangmanGameActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         initVariables()
 
-        gameInit()
-
         Log.d(TAG, "HangmanGameActivity created")
     }
 
@@ -88,17 +87,22 @@ class HangmanGameActivity : AppCompatActivity() {
         letters = findViewById(R.id.letters)
         letters.adapter = LetterAdapter(this)
 
-        //getPlayerCount()
+        getPlayerCountAsync().execute()
 
-        scoreArray = Array(playerCount){0}
+//        scoreArray = Array(playerCount){0}
 
     }
 
-//    private fun getPlayerCount(): Unit {
-//        var job = async {
-//            playerCount = db.playerDAO().showAllPlayers().size
-//        }.await()
-//    }
+    private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
+        override fun doInBackground(vararg params: Void?) {
+            playerCount = db.playerDAO().showAllPlayers().size
+            scoreArray = Array(playerCount){0}
+        }
+
+        override fun onPostExecute(result: Unit?) {
+            gameInit()
+        }
+    }
 
     private fun gameInit() {
         hideBodyParts()
