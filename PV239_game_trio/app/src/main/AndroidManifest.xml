@@ -19,7 +19,8 @@
         <activity android:name=".frontend.games.charade.CharadeActivity"
                   android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
-        <activity android:name=".frontend.main.start.ScoreActivity">
+        <activity android:name=".frontend.main.start.ScoreActivity"
+        android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity android:name=".frontend.games.tikBum.TikBumAddPointsActivity">
         </activity>
@@ -34,7 +35,7 @@
             android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity android:name=".frontend.games.hangman.HangmanGameActivity"
-                  android:parentActivityName=".frontend.main.ChooseActivity">
+        android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity android:name=".frontend.main.start.MainActivity">
             <intent-filter>

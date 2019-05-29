@@ -76,7 +76,7 @@ class HangmanGameActivity : AppCompatActivity() {
         guess = findViewById(R.id.answer)
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
-        words = resources.getStringArray(R.array.words)
+        //words = resources.getStringArray(R.array.words)
 //        Thread{
 //            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
 //            Log.d(TAG,words.toString())
@@ -89,12 +89,11 @@ class HangmanGameActivity : AppCompatActivity() {
 
         getPlayerCountAsync().execute()
 
-//        scoreArray = Array(playerCount){0}
-
     }
 
     private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
+            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
             playerCount = db.playerDAO().showAllPlayers().size
             scoreArray = Array(playerCount){0}
         }
@@ -124,6 +123,8 @@ class HangmanGameActivity : AppCompatActivity() {
             if (word == currentWord){
                 scoreArray[currentPlayer]+=5
                 displayEndGameDialog("Congratulations", "You win!\n\nThe answer was:\n\n$currentWord\n\nYou earned ${scoreArray[currentPlayer]} points so far!")
+
+
             }
             else{
                 scoreArray[currentPlayer]-=5
@@ -292,6 +293,10 @@ class HangmanGameActivity : AppCompatActivity() {
 
         helpBuild.create()
         helpBuild.show()
+    }
+
+    override fun onBackPressed() {
+        return
     }
 
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PV239_game_trio</string>
+    <string name="app_name">Game Trio</string>
 
     <string name="charade">Charade</string>
     <string name="hangman">Hangman</string>
