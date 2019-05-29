@@ -17,6 +17,7 @@ import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 
+
 class TikBumActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioTikBum"
@@ -28,6 +29,7 @@ class TikBumActivity : AppCompatActivity() {
     private lateinit var soundTikTok : MediaPlayer
     private lateinit var soundBoom : MediaPlayer
 
+    private var isBackDisable = true
 
     private lateinit var buttonStart : Button
 
@@ -140,7 +142,6 @@ class TikBumActivity : AppCompatActivity() {
                 soundTikTok.stop()
                 soundBoom.start()
                 openActivityAddPoints()
-                //soundTikTok.isLooping = false
 
             }
         }
@@ -152,6 +153,11 @@ class TikBumActivity : AppCompatActivity() {
     private fun openActivityAddPoints(){
         val intent = Intent(this, TikBumAddPointsActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        if (isBackDisable) return
+        Log.e(TAG, "Back is disabled")
     }
 
 

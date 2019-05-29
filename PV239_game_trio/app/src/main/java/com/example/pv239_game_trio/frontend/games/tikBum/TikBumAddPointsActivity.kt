@@ -12,7 +12,11 @@ import android.widget.TextView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
-import com.example.pv239_game_trio.frontend.main.start.MainActivity
+import android.view.KeyEvent.KEYCODE_BACK
+import android.view.KeyEvent
+
+
+
 
 class TikBumAddPointsActivity : AppCompatActivity() {
 
@@ -88,9 +92,13 @@ class TikBumAddPointsActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+
     fun checkButton(v: View) {
         val radioId = radioGroup.checkedRadioButtonId
         Log.d(TAG,radioId.toString())
         radioButton = findViewById(radioId)
     }
+
+
 }

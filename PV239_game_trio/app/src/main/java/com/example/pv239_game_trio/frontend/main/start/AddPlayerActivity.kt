@@ -19,8 +19,8 @@ class AddPlayerActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioAddPlayer"
     private lateinit var  addPlayerButton: Button
-    private lateinit var  playersTextView: TextView
-    lateinit var mRecyclerView: RecyclerView
+    //private lateinit var  playersTextView: TextView
+    //lateinit var mRecyclerView: RecyclerView
     lateinit var textInputWord: TextInputLayout
     private var playersInDb : Int = 0
 
@@ -28,7 +28,7 @@ class AddPlayerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_player)
+        setContentView(R.layout.activity_add_player_form)
         Log.d(TAG,"onCreate()")
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
@@ -40,18 +40,9 @@ class AddPlayerActivity : AppCompatActivity() {
 
         Log.d(TAG, "Players in DB = " + playersInDb)
 
-        //playersInDb = db.playerDAO().showAllPlayers().size
-
-        playersTextView = findViewById(R.id.textView_players)
-
-        //playersTextView.text = showAllPlayers(db)
-
-
         textInputWord = findViewById(R.id.input)
 
         addPlayerButton = findViewById(R.id.button_add_player)
-
-        mRecyclerView = findViewById(R.id.recycler_view)
 
 
         addPlayerButton.setOnClickListener(View.OnClickListener {
@@ -91,11 +82,14 @@ class AddPlayerActivity : AppCompatActivity() {
                         playersInDb += 1
                         Log.d(TAG,"number of players in DB is : " + playersInDb)
                         //getAllPlayers(db)
-                        openActivityMain()
 
                     }
 
                 }.start()
+                Toast.makeText(this, "Player " + name + " created", Toast.LENGTH_SHORT).show()
+
+                openActivityMain()
+
 
                 if (dbValidation == "sizeProblem"){
                         textInputWord.error = "Max number of players is 6"
@@ -112,13 +106,7 @@ class AddPlayerActivity : AppCompatActivity() {
             }
 
         })
-
-
-
     }
-
-
-
 
     private fun validateInput(name: String): Boolean {
         Log.d(TAG,"Validation started")
@@ -137,22 +125,6 @@ class AddPlayerActivity : AppCompatActivity() {
             Log.d(TAG,"Validation succesful")
             return true
         }
-
-    }
-
-    private fun getAllPlayers(): String {
-        var output = "Players:"
-
-
-        for(i in 1..playersInDb + 1){
-            output = db.playerDAO().showAllPlayers()[i].name
-            Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
-
-        }
-        Log.d(TAG,output)
-
-        return output
-
 
     }
 
