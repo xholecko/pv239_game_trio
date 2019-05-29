@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  startActivityButton: Button
     private lateinit var  addPlayerButton: Button
     private lateinit var  removePlayerButton: Button
-    private lateinit var  infoText: TextView
     private lateinit var  playersTextView: TextView
     private lateinit var db : AppDB
     private var playersInDb : Int = 0
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         startActivityButton = findViewById(R.id.button_start)
         removePlayerButton = findViewById(R.id.button_remove_player)
 
-        infoText = findViewById(R.id.textView_info)
         playersTextView = findViewById(R.id.textView_players)
 
         Thread {
@@ -54,7 +52,6 @@ class MainActivity : AppCompatActivity() {
             }
             if(db.playerDAO().showAllPlayers().size < 2){
                 removePlayerButton.visibility = View.INVISIBLE
-
             }
         }.start()
 
@@ -107,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
         for(i in 0 until playersInDb){
             output = output + "NAME = " + db.playerDAO().showAllPlayers()[i].name +
-                    " POINTS = " + db.playerDAO().showAllPlayers()[i].points + ","
+                    " POINTS = " + db.playerDAO().showAllPlayers()[i].points 
             Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
 
         }
