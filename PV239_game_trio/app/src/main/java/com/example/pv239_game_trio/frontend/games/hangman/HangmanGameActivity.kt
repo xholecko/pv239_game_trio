@@ -2,6 +2,7 @@ package com.example.pv239_game_trio.frontend.games.hangman
 
 import android.content.Context
 import android.graphics.Color
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -18,6 +19,9 @@ import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 import com.example.pv239_game_trio.frontend.main.start.MainActivity
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 
@@ -54,8 +58,6 @@ class HangmanGameActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         initVariables()
 
-        gameInit()
-
         Log.d(TAG, "HangmanGameActivity created")
     }
 
@@ -84,12 +86,22 @@ class HangmanGameActivity : AppCompatActivity() {
         currentWord = ""
         letters = findViewById(R.id.letters)
         letters.adapter = LetterAdapter(this)
-        Thread{
+
+        getPlayerCountAsync().execute()
+
+//        scoreArray = Array(playerCount){0}
+
+    }
+
+    private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
+        override fun doInBackground(vararg params: Void?) {
             playerCount = db.playerDAO().showAllPlayers().size
-        }.start()
+            scoreArray = Array(playerCount){0}
+        }
 
-        scoreArray = Array(playerCount){0}
-
+        override fun onPostExecute(result: Unit?) {
+            gameInit()
+        }
     }
 
     private fun gameInit() {
