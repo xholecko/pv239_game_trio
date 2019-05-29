@@ -54,8 +54,6 @@ class CharadeAddPointsActivity : AppCompatActivity() {
         charadeType = findViewById(R.id.text_charade_type)
         charadeType.text = intent.getStringExtra("CharadeType")
 
-        buttonNewCharade.visibility = View.INVISIBLE
-
         val numbers = mutableListOf(checkbox1,checkbox2,checkbox3,checkbox4,checkbox5,checkbox6)
 
         Thread{
@@ -94,7 +92,6 @@ class CharadeAddPointsActivity : AppCompatActivity() {
 
     private fun hideSaveButton() {
         buttonAddPoints.visibility = View.INVISIBLE
-        buttonNewCharade.visibility = View.VISIBLE
     }
 
     private fun getCheckedCheckboxes(allCheckboxes : List<CheckBox>): List<CheckBox> {
