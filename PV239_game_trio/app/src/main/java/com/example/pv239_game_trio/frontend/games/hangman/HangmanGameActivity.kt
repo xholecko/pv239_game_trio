@@ -18,6 +18,9 @@ import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 import com.example.pv239_game_trio.frontend.main.start.MainActivity
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 
@@ -84,13 +87,18 @@ class HangmanGameActivity : AppCompatActivity() {
         currentWord = ""
         letters = findViewById(R.id.letters)
         letters.adapter = LetterAdapter(this)
-        Thread{
-            playerCount = db.playerDAO().showAllPlayers().size
-        }.start()
+
+        //getPlayerCount()
 
         scoreArray = Array(playerCount){0}
 
     }
+
+//    private fun getPlayerCount(): Unit {
+//        var job = async {
+//            playerCount = db.playerDAO().showAllPlayers().size
+//        }.await()
+//    }
 
     private fun gameInit() {
         hideBodyParts()
