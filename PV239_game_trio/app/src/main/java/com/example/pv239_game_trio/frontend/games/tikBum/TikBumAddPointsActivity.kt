@@ -1,7 +1,6 @@
 package com.example.pv239_game_trio.frontend.games.tikBum
 
 import android.content.Intent
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -69,8 +68,6 @@ class TikBumAddPointsActivity : AppCompatActivity() {
             }
         }.start()
 
-
-
         buttonAddPoints.setOnClickListener(View.OnClickListener {
             val radioId = radioGroup.checkedRadioButtonId
 
@@ -82,9 +79,12 @@ class TikBumAddPointsActivity : AppCompatActivity() {
                         db.playerDAO().addPointsToAllButOneById(db.playerDAO().showAllPlayers()[i].id,1)
                         openActivityTikBum()
                     }
+
                 }
             }.start()
         })
+
+
 
     }
     private fun openActivityTikBum(){
@@ -99,7 +99,6 @@ class TikBumAddPointsActivity : AppCompatActivity() {
         Log.d(TAG,radioId.toString())
         radioButton = findViewById(radioId)
     }
-
 
 
 }

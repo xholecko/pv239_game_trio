@@ -54,4 +54,19 @@
     <string name="restart_games">Restart game</string>
     <string name="title_activity_players">PlayersActivity</string>
 
+    <string name="charade_label">Charade</string>
+    <string name="charade_points_label">Charade points</string>
+
+    <string name="tikbum_label">TikBum</string>
+    <string name="tikbum_points_label">TikBum points</string>
+
+    <string name="hangman_label">Hangman</string>
+    <string name="hangman_points_label">Hangman points</string>
+
+    <string name="add_player_label">Add player</string>
+    <string name="remove_player_label">Remove player</string>
+
+    <string name="choose_activity_label">Choose game</string>
+    <string name="score_label">Score</string>
+
 </resources>

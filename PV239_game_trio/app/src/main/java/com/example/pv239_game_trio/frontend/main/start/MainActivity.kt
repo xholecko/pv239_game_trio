@@ -8,30 +8,28 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.app.NavUtils
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
-import com.example.pv239_game_trio.frontend.main.ChooseActivity
+import com.example.pv239_game_trio.frontend.main.ChooseGameActivity
 
 class MainActivity : AppCompatActivity() {
 
 
     private val TAG = "GameTrioMainActivity"
 
-    private lateinit var  startActivityButton: CardView
-    private lateinit var  addPlayerButton: CardView
-    private lateinit var  removePlayerButton: CardView
-    private lateinit var  buttonScore: CardView
+    private lateinit var  startActivityButton: Button
+    private lateinit var  addPlayerButton: Button
+    private lateinit var  removePlayerButton: Button
     private lateinit var  playersTextView: TextView
     private lateinit var db : AppDB
     private var playersInDb : Int = 0
     private lateinit var players: Array<PlayerEntity>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +38,11 @@ class MainActivity : AppCompatActivity() {
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB::class.java, "GameTrioDB").build()
 
-        addPlayerButton = findViewById(R.id.cardView_add)
+        addPlayerButton = findViewById(R.id.button_add)
 
-        startActivityButton = findViewById(R.id.cardView_start)
-        removePlayerButton = findViewById(R.id.cardView_remove_player)
-        buttonScore = findViewById(R.id.cardView_score)
+        startActivityButton = findViewById(R.id.button_start)
+        removePlayerButton = findViewById(R.id.button_remove_player)
+
         playersTextView = findViewById(R.id.textView_players)
 
         getPlayers().execute()
@@ -63,25 +61,15 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "button REMOVE PLAYER was pressed")
             openActivityRemovePlayerActivity()
         }
-        buttonScore.setOnClickListener {
-            Log.d(TAG,"button TIKBUM was pressed")
-            openActivityScore()
-        }
     }
 
     private fun displayPlayers() {
         playersTextView.text = getAllPlayers(players)
         if (players.size >= 6) {
-            addPlayerButton.isEnabled = false
-            //TODO
-            //val image: ImageView = findViewById(R.id.imageStart)
-            //image.
+            addPlayerButton.visibility = View.INVISIBLE
         }
         if (players.isEmpty()) {
-            removePlayerButton.isEnabled = false
-        }
-        if (players.size < 2){
-            startActivityButton.isEnabled = false
+            removePlayerButton.visibility = View.INVISIBLE
         }
     }
 
@@ -102,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openActivityStartActivity() {
-        val intent = Intent(this, ChooseActivity::class.java)
+        val intent = Intent(this, ChooseGameActivity::class.java)
         startActivity(intent)
     }
 
@@ -186,10 +174,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun openActivityScore(){
-        val intent = Intent(this, ScoreActivity::class.java)
-        startActivity(intent)
     }
 }

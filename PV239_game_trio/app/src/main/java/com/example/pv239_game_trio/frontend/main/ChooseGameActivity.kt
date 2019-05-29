@@ -5,29 +5,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import androidx.cardview.widget.CardView
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.frontend.games.charade.CharadeActivity
 import com.example.pv239_game_trio.frontend.games.hangman.HangmanGameActivity
 import com.example.pv239_game_trio.frontend.games.tikBum.TikBumActivity
 import com.example.pv239_game_trio.frontend.main.start.ScoreActivity
 
-class ChooseActivity : AppCompatActivity() {
+class ChooseGameActivity : AppCompatActivity() {
 
-    private val TAG = "GameTrioChoose"
+    private val TAG = "GameTrio"
 
-    private lateinit var  buttonCharade: CardView
-    private lateinit var  buttonHangman: CardView
-    private lateinit var  buttonTikBum: CardView
+    private lateinit var  buttonCharade: Button
+    private lateinit var  buttonHangman: Button
+    private lateinit var  buttonTikBum: Button
+    private lateinit var  buttonScore: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_choose)
+        setContentView(R.layout.activity_choose_game)
 
-        buttonCharade = findViewById(R.id.charadeCardView)
-        buttonHangman = findViewById(R.id.hangmanCardView)
-        buttonTikBum = findViewById(R.id.tikBumCardView)
+        buttonCharade = findViewById(R.id.charade)
+        buttonHangman = findViewById(R.id.hangman)
+        buttonTikBum = findViewById(R.id.tikBum)
+        buttonScore = findViewById(R.id.score)
 
 
         buttonCharade.setOnClickListener {
@@ -45,7 +46,10 @@ class ChooseActivity : AppCompatActivity() {
             Log.d(TAG,"button TIKBUM was pressed")
             openActivityTikBum()
         }
-
+        buttonScore.setOnClickListener {
+            Log.d(TAG,"button TIKBUM was pressed")
+            openActivityScore()
+        }
 
     }
 
@@ -63,5 +67,8 @@ class ChooseActivity : AppCompatActivity() {
         val intent = Intent(this, TikBumActivity::class.java)
         startActivity(intent)
     }
-
+    private fun openActivityScore(){
+        val intent = Intent(this, ScoreActivity::class.java)
+        startActivity(intent)
+    }
 }

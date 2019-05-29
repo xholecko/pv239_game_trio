@@ -3,16 +3,12 @@ package com.example.pv239_game_trio.backend
 import android.app.Application
 import android.util.Log
 import androidx.room.Room
-import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.entities.CharadeEntity
-import com.example.pv239_game_trio.backend.entities.HangmanEntity
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.backend.entities.TikBumEntity
 
 class App : Application() {
     private val TAG = "GameTrioApp"
-
-    private val HANGMAN_WORDS = setOf("CHARGER","COMPUTER","TABLET","SYSTEM","APPLICATION","INTERNET","STYLUS","ANDROID","KEYBOARD","SMARTPHONE")
 
     private val WORDS = setOf("Elephant", "Mole's hill", "Rebellion", "Guitar", "Chimpanzee",
         "The Sword in the Stone", "The Magic Carpet", "Car", "Human", "Apple", "Vegetables",
@@ -46,7 +42,6 @@ class App : Application() {
         //createPlayers(db)
         createWords(db)
         createCharades(db)
-        createWordsHangman(db)
     }
 
 
@@ -131,16 +126,5 @@ class App : Application() {
             db.charadeDAO().create(charade)
         }.start()
         */
-    }
-
-    private fun createWordsHangman(db: AppDB){
-        Thread{
-            for(word in HANGMAN_WORDS){
-                val hangman = HangmanEntity()
-                hangman.word = word
-
-                db.hangmanDAO().create(hangman)
-            }
-        }.start()
     }
 }
