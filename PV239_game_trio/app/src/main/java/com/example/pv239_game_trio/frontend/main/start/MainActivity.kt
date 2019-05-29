@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
         for(i in 0 until playersInDb){
             output = output + "NAME = " + db.playerDAO().showAllPlayers()[i].name +
-                    " POINTS = " + db.playerDAO().showAllPlayers()[i].points 
+                    " POINTS = " + db.playerDAO().showAllPlayers()[i].points
             Log.d(TAG, "Name= " + db.playerDAO().showAllPlayers()[i].name + " Id= " + db.playerDAO().showAllPlayers()[i].id)
 
         }

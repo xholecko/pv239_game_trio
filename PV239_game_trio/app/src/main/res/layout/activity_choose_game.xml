@@ -1,35 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".frontend.main.ChooseGameActivity">
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:layout_margin="10dp">
+
         <TextView
                 android:text="@string/choose"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/choose" android:layout_marginTop="50dp"
-                android:paddingTop="50dp"/>
+                android:layout_marginTop="100dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/choose"
+                android:paddingTop="50dp"
+                android:layout_centerHorizontal="true"
+        />
         <Button
                 android:text="@string/charade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/charade"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/charade"
+                android:layout_marginTop="27dp"
+                android:layout_below="@+id/choose"
+                android:layout_centerHorizontal="true"
+
+
+        />
         <Button
                 android:text="@string/hangman"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/hangman"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hangman"
+                android:layout_marginTop="27dp"
+                android:layout_below="@+id/charade"
+                android:layout_centerHorizontal="true"
+
+        />
         <Button
                 android:text="@string/tikBum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/tikBum"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tikBum"
+                android:layout_marginTop="27dp"
+                android:layout_below="@+id/hangman"
+                android:layout_centerHorizontal="true"
+
+        />
         <Button
                 android:text="@string/score"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/score"/>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score"
+                android:layout_marginTop="27dp"
+                android:layout_below="@+id/tikBum"
+                android:layout_centerHorizontal="true"
+
+        />
+</RelativeLayout>
