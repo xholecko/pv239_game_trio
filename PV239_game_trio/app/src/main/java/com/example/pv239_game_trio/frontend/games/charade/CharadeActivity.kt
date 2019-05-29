@@ -1,6 +1,7 @@
 package com.example.pv239_game_trio.frontend.games.charade
 
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -45,19 +46,26 @@ class CharadeActivity : AppCompatActivity() {
         charadeType = findViewById(R.id.text_charade_type)
         countdown = findViewById(R.id.charade_countdown)
 
-        Thread {
-            allCharades = db.charadeDAO().showAllCharades()
-            updateToNewCharade()
-        }.start()
-
         buttonStart.setOnClickListener(View.OnClickListener {
             Log.d(TAG,"Button for starting charade was pressed")
             setTimer()
         })
+
+        getCharade().execute()
+    }
+
+    private inner class getCharade: AsyncTask<Void, Void, Unit>() {
+        override fun doInBackground(vararg params: Void?) {
+            allCharades = db.charadeDAO().showAllCharades()
+            generatedCharade = generateCharade()
+        }
+
+        override fun onPostExecute(result: Unit?) {
+            updateToNewCharade()
+        }
     }
 
     private fun updateToNewCharade() {
-        generatedCharade = generateCharade()
         charadeText.text = generatedCharade.first.text
         charadeType.text = generatedCharade.second.toString()
         countdown.text = "60"
@@ -83,7 +91,6 @@ class CharadeActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                buttonStart.visibility = View.VISIBLE
                 timerRunning = false
                 openActivityAddPoints()
             }
