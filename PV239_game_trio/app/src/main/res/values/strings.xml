@@ -47,6 +47,6 @@
     <string name="new_charade">Next charade</string>
 
     <string name="reset_points">Reset points</string>
-    <string name="restart_games">Restart games</string>
+    <string name="restart_games">Restart game</string>
 
 </resources>
