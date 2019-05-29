@@ -11,30 +11,31 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".frontend.games.charade.CharadeAddPointsActivity"
-        android:parentActivityName=".frontend.main.ChooseGameActivity">
+                  android:parentActivityName=".frontend.main.ChooseActivity"></activity>
+        <activity android:name=".frontend.main.start.AddPlayerActivity"
+                  android:parentActivityName=".frontend.main.start.MainActivity">
+        </activity>
+
+        <activity android:name=".frontend.games.charade.CharadeActivity"
+                  android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity android:name=".frontend.main.start.ScoreActivity"
         android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity android:name=".frontend.games.tikBum.TikBumAddPointsActivity">
         </activity>
-        <activity android:name=".frontend.main.start.RemovePlayerActivity">
+        <activity android:name=".frontend.main.start.RemovePlayerActivity"
+                  android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
-        <activity android:name=".frontend.main.start.AddPlayerActivity">
-        </activity>
-        <activity android:name=".frontend.main.ChooseGameActivity"
+        <activity android:name=".frontend.main.ChooseActivity"
         android:parentActivityName=".frontend.main.start.MainActivity">
 
         </activity>
         <activity android:name=".frontend.games.tikBum.TikBumActivity"
-            android:parentActivityName=".frontend.main.ChooseGameActivity">
+            android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity android:name=".frontend.games.hangman.HangmanGameActivity"
-        android:parentActivityName=".frontend.main.ChooseGameActivity">
-
-        </activity>
-        <activity android:name=".frontend.games.charade.CharadeActivity"
-            android:parentActivityName=".frontend.main.ChooseGameActivity">
+        android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity android:name=".frontend.main.start.MainActivity">
             <intent-filter>

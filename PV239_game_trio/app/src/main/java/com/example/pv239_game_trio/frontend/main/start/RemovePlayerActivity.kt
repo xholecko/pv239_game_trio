@@ -34,7 +34,6 @@ class RemovePlayerActivity : AppCompatActivity() {
 
     private lateinit var  textView: TextView
     private lateinit var  buttonRemove: Button
-    private lateinit var  buttonCancel: Button
 
 
     private lateinit var db : AppDB
@@ -50,7 +49,6 @@ class RemovePlayerActivity : AppCompatActivity() {
         radioGroup = findViewById(R.id.radioGroup)
         textView = findViewById(R.id.text_view_selected)
         buttonRemove = findViewById(R.id.button_apply)
-        buttonCancel = findViewById(R.id.button_cancel)
         radioButton1 = findViewById(R.id.radio_one)
         radioButton2 = findViewById(R.id.radio_two)
         radioButton3 = findViewById(R.id.radio_three)
@@ -88,9 +86,6 @@ class RemovePlayerActivity : AppCompatActivity() {
 
                 }
             }.start()
-        })
-        buttonCancel.setOnClickListener(View.OnClickListener {
-            openActivityMain()
         })
     }
 
