@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="30sp"
         tools:context=".frontend.main.ChooseGameActivity">
 
     <TextView
@@ -29,6 +30,7 @@
             android:layout_marginBottom="10sp"
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
+            android:layout_below="@+id/text_charade_word"
             android:textAlignment="center"/>
 
     <TextView
@@ -39,14 +41,18 @@
             android:textSize="100sp"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="10sp"
+            android:layout_below="@+id/text_charade_type"
             android:textAlignment="center"/>
 
     <Button
             android:text="@string/start"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_start_charade"
             android:visibility="visible"
+            android:textAlignment="center"
+            android:layout_below="@+id/charade_countdown"
+            android:layout_centerHorizontal="true"
             tools:visibility="visible"/>
 
-</LinearLayout>
+</RelativeLayout>

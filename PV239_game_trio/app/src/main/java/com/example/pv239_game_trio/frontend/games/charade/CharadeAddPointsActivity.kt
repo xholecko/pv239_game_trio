@@ -15,8 +15,6 @@ class CharadeAddPointsActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioAddPoints"
 
-    private lateinit var checkboxLayout: LinearLayout
-
     private lateinit var charadeText: TextView
     private lateinit var charadeType: TextView
 
@@ -40,7 +38,6 @@ class CharadeAddPointsActivity : AppCompatActivity() {
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
 
-        checkboxLayout = findViewById(R.id.checkboxLayout)
         textView = findViewById(R.id.text_view_selected)
         buttonAddPoints = findViewById(R.id.button_confirm)
         buttonNewCharade = findViewById(R.id.button_new_charade)
@@ -56,6 +53,8 @@ class CharadeAddPointsActivity : AppCompatActivity() {
         charadeText.text = intent.getStringExtra("CharadeText")
         charadeType = findViewById(R.id.text_charade_type)
         charadeType.text = intent.getStringExtra("CharadeType")
+
+        buttonNewCharade.visibility = View.INVISIBLE
 
         val numbers = mutableListOf(checkbox1,checkbox2,checkbox3,checkbox4,checkbox5,checkbox6)
 
@@ -95,6 +94,7 @@ class CharadeAddPointsActivity : AppCompatActivity() {
 
     private fun hideSaveButton() {
         buttonAddPoints.visibility = View.INVISIBLE
+        buttonNewCharade.visibility = View.VISIBLE
     }
 
     private fun getCheckedCheckboxes(allCheckboxes : List<CheckBox>): List<CheckBox> {
