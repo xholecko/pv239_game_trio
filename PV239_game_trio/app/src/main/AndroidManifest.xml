@@ -10,32 +10,43 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".frontend.games.charade.CharadeAddPointsActivity"
-                  android:parentActivityName=".frontend.main.ChooseActivity"></activity>
-        <activity android:name=".frontend.main.start.AddPlayerActivity"
-                  android:parentActivityName=".frontend.main.start.MainActivity">
+        <activity
+                android:name=".frontend.main.PlayersActivity"
+                android:label="@string/title_activity_players"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
-        <activity android:name=".frontend.games.charade.CharadeActivity"
-                  android:parentActivityName=".frontend.main.ChooseActivity">
+        <activity
+                android:name=".frontend.games.charade.CharadeAddPointsActivity"
+                android:parentActivityName=".frontend.main.ChooseActivity"/>
+        <activity
+                android:name=".frontend.main.start.AddPlayerActivity"
+                android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
-        <activity android:name=".frontend.main.start.ScoreActivity"
-        android:parentActivityName=".frontend.main.start.MainActivity">
+        <activity
+                android:name=".frontend.games.charade.CharadeActivity"
+                android:parentActivityName=".frontend.main.ChooseActivity">
+        </activity>
+        <activity
+                android:name=".frontend.main.start.ScoreActivity"
+                android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity android:name=".frontend.games.tikBum.TikBumAddPointsActivity">
         </activity>
-        <activity android:name=".frontend.main.start.RemovePlayerActivity"
-                  android:parentActivityName=".frontend.main.start.MainActivity">
+        <activity
+                android:name=".frontend.main.start.RemovePlayerActivity"
+                android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
-        <activity android:name=".frontend.main.ChooseActivity"
-        android:parentActivityName=".frontend.main.start.MainActivity">
-
+        <activity
+                android:name=".frontend.main.ChooseActivity"
+                android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
-        <activity android:name=".frontend.games.tikBum.TikBumActivity"
-            android:parentActivityName=".frontend.main.ChooseActivity">
+        <activity
+                android:name=".frontend.games.tikBum.TikBumActivity"
+                android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
-        <activity android:name=".frontend.games.hangman.HangmanGameActivity"
-        android:parentActivityName=".frontend.main.ChooseActivity">
+        <activity
+                android:name=".frontend.games.hangman.HangmanGameActivity"
+                android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity android:name=".frontend.main.start.MainActivity">
             <intent-filter>

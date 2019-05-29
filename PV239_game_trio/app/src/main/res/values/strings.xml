@@ -52,5 +52,6 @@
 
     <string name="reset_points">Reset points</string>
     <string name="restart_games">Restart game</string>
+    <string name="title_activity_players">PlayersActivity</string>
 
 </resources>

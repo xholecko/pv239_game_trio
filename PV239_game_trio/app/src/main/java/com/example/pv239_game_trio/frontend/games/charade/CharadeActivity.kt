@@ -82,7 +82,7 @@ class CharadeActivity : AppCompatActivity() {
     }
 
     private fun setTimer(){
-        timer = object: CountDownTimer(60000,1000) {
+        timer = object: CountDownTimer(6000,1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 buttonStart.visibility = View.INVISIBLE
