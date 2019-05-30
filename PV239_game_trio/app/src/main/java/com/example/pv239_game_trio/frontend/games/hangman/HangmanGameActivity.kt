@@ -79,10 +79,6 @@ class HangmanGameActivity : AppCompatActivity() {
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
         words = resources.getStringArray(R.array.words)
-//        Thread{
-//            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
-//            Log.d(TAG,words.toString())
-//        }.start()
 
         wordLayout = findViewById(R.id.word)
         currentWord = ""
@@ -90,16 +86,14 @@ class HangmanGameActivity : AppCompatActivity() {
         letters.adapter = LetterAdapter(this)
 
         getPlayerCountAsync().execute()
-
-//        scoreArray = Array(playerCount){0}
-
     }
 
     private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
             players = db.playerDAO().showAllPlayers()
+            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
             playerCount = players.size
-            scoreArray = Array(playerCount){0}
+            scoreArray = players.map { t -> t.points }.toTypedArray()
         }
 
         override fun onPostExecute(result: Unit?) {
@@ -126,11 +120,11 @@ class HangmanGameActivity : AppCompatActivity() {
             val word = guess.text.toString()
             if (word == currentWord){
                 scoreArray[currentPlayer]+=5
-                displayEndGameDialog("Congratulations", "You win!\n\nThe answer was:\n\n$currentWord\n\nYou earned ${scoreArray[currentPlayer]} points so far!")
+                displayEndGameDialog("Congratulations", "You win!\n\nThe answer was:\n\n$currentWord")
             }
             else{
                 scoreArray[currentPlayer]-=5
-                displayEndGameDialog("OOPS", "You lose!\n\nThe answer was:\n\n$currentWord\n\nYou earned ${scoreArray[currentPlayer]} points so far!")
+                displayEndGameDialog("OOPS", "You lose!\n\nThe answer was:\n\n$currentWord")
             }
 
             guess.text.clear()
@@ -206,14 +200,14 @@ class HangmanGameActivity : AppCompatActivity() {
             if (numCorr == numChars) {
                 //user has won
                 scoreArray[currentPlayer]+=5
-                displayEndGameDialog("Congratulations", "You win!\n\nThe answer was:\n\n$currentWord\n\nYou earned ${scoreArray[currentPlayer]} points so far!")
+                displayEndGameDialog("Congratulations", "You win!\n\nThe answer was:\n\n$currentWord")
             }
         } else if (currentPart < numParts) {
             scoreArray[currentPlayer]--
             bodyParts[currentPart].visibility = View.VISIBLE
             currentPart++
         } else {
-            displayEndGameDialog("OOPS", "You lose!\n\nThe answer was:\n\n$currentWord\n\nYou earned ${scoreArray[currentPlayer]} points so far!")
+            displayEndGameDialog("OOPS", "You lose!\n\nThe answer was:\n\n$currentWord")
         }
 
         changePlayer()
@@ -240,6 +234,11 @@ class HangmanGameActivity : AppCompatActivity() {
         ) { _, _ -> this@HangmanGameActivity.finish() }
 
         build.show()
+
+        Thread{
+            for (i in 0 until playerCount)
+            db.playerDAO().addPointsById(i,scoreArray[i])
+        }.start()
     }
 
     private fun disableButtons() {
