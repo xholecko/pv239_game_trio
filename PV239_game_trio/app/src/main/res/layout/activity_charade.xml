@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".frontend.main.ChooseActivity">
+        tools:context=".frontend.main.ChooseActivity"
+>
 
     <Space
             android:layout_height="0sp"

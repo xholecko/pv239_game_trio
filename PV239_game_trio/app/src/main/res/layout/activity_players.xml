@@ -56,7 +56,8 @@
                         android:layout_width="64sp"
                         android:layout_height="64sp"
                         android:padding="10sp"
-                        android:background="@drawable/ic_add_circle_black_24dp"/>
+                        android:background="@drawable/ic_add_circle_black_24dp"
+                        android:id="@+id/imageViewAdd"/>
                 <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -105,12 +106,10 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
                         android:layout_marginTop="10sp"
                         android:text="@string/start"
                         android:textStyle="bold" />
-
-
-
 
 
             </LinearLayout>

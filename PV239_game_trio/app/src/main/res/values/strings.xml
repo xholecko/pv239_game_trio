@@ -68,5 +68,7 @@
 
     <string name="choose_activity_label">Choose game</string>
     <string name="score_label">Score</string>
+    <string name="play_with_players">Play</string>
+
 
 </resources>
