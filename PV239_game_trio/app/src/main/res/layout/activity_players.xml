@@ -1,15 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    android:layout_width="fill_parent"
                                                    android:layout_height="wrap_content"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center">
+            android:gravity="center"
+    android:id="@+id/linear_layout_players">
         <ListView
                 android:id="@+id/players_list_view"
                 android:layout_width="match_parent"
@@ -17,6 +18,16 @@
         />
     </LinearLayout>
 
-
-
-</LinearLayout>
+    <Button
+            android:text="@string/add"
+            android:layout_below="@+id/linear_layout_players"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonAddPlayer"/>
+    <Button
+            android:text="@string/start"
+            android:layout_below="@+id/buttonAddPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/start_game"/>
+</RelativeLayout>

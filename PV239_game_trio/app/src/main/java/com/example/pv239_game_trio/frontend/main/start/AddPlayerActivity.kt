@@ -13,6 +13,7 @@ import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
+import com.example.pv239_game_trio.frontend.main.PlayersActivity
 import com.google.android.material.textfield.TextInputLayout
 
 class AddPlayerActivity : AppCompatActivity() {
@@ -129,7 +130,7 @@ class AddPlayerActivity : AppCompatActivity() {
     }
 
     private fun openActivityMain(){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, PlayersActivity::class.java)
         startActivity(intent)
     }
 }

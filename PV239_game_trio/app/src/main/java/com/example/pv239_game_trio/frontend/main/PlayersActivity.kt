@@ -7,17 +7,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
 import com.example.pv239_game_trio.backend.entities.PlayerEntity
-import com.example.pv239_game_trio.frontend.main.start.ScoreActivity
+import com.example.pv239_game_trio.frontend.main.start.AddPlayerActivity
 
 class PlayersActivity : AppCompatActivity() {
     private lateinit var listView : ListView
     private lateinit var db : AppDB
     private lateinit var players: Array<PlayerEntity>
+    private lateinit var addPlayerButton: Button
+    private lateinit var startButton: Button
+
     private val TAG = "GameTrioPlayersActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,9 @@ class PlayersActivity : AppCompatActivity() {
 
         getPlayers().execute()
         listView = findViewById(R.id.players_list_view)
+
+        addPlayerButton = findViewById(R.id.buttonAddPlayer)
+        startButton = findViewById(R.id.start_game)
 
         val context = this
         listView.setOnItemClickListener { _, _, position, _ ->
@@ -46,6 +53,13 @@ class PlayersActivity : AppCompatActivity() {
             }
             builder.show()
 
+        }
+
+        addPlayerButton.setOnClickListener {
+            openActivityAdd()
+        }
+        startButton.setOnClickListener {
+            openActivityChoose()
         }
     }
 
@@ -74,6 +88,14 @@ class PlayersActivity : AppCompatActivity() {
 
     private fun openActivityPlayer(){
         val intent = Intent(this, PlayersActivity::class.java)
+        startActivity(intent)
+    }
+    private fun openActivityAdd(){
+        val intent = Intent(this, AddPlayerActivity::class.java)
+        startActivity(intent)
+    }
+    private fun openActivityChoose(){
+        val intent = Intent(this, ChooseActivity::class.java)
         startActivity(intent)
     }
 }
