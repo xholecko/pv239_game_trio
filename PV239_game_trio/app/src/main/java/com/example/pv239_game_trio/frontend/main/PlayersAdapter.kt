@@ -1,4 +1,4 @@
-package com.example.pv239_game_trio.frontend.main
+package com.example.pv239_game_trio.frontend.showScoreButtonmain
 
 import android.content.Context
 import android.view.LayoutInflater
