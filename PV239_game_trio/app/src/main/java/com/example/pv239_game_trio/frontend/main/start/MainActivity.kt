@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.frontend.main.PlayersActivity
 
@@ -13,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioMainActivity"
 
-    private lateinit var playButton: Button
-    private lateinit var showScoreButton: Button
+    private lateinit var playButton: CardView
+    private lateinit var showScoreButton: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
