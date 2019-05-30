@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.cardview.widget.CardView
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
@@ -19,8 +20,8 @@ class PlayersActivity : AppCompatActivity() {
     private lateinit var listView : ListView
     private lateinit var db : AppDB
     private lateinit var players: Array<PlayerEntity>
-    private lateinit var addPlayerButton: Button
-    private lateinit var startButton: Button
+    private lateinit var addPlayerButton: CardView
+    private lateinit var startButton: CardView
 
     private val TAG = "GameTrioPlayersActivity"
 
