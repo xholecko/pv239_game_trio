@@ -33,6 +33,7 @@
                 <ImageView
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:background="@drawable/charades"
                         android:padding="10dp"/>
                 <View
                         android:layout_width="match_parent"
@@ -74,7 +75,7 @@
                 <ImageView
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-
+                        android:background="@drawable/hangman"
                         android:padding="10dp"/>
                 <View
                         android:layout_width="match_parent"
@@ -116,7 +117,7 @@
                 <ImageView
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-
+                        android:background="@drawable/tikbum"
                         android:padding="10dp"/>
                 <View
                         android:layout_width="match_parent"
