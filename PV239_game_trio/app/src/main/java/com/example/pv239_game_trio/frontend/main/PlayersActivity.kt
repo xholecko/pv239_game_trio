@@ -2,14 +2,19 @@ package com.example.pv239_game_trio.frontend.main
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.drawable.Icon
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.graphics.drawable.DrawableCompat.setTint
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
@@ -22,6 +27,9 @@ class PlayersActivity : AppCompatActivity() {
     private lateinit var players: Array<PlayerEntity>
     private lateinit var addPlayerButton: CardView
     private lateinit var startButton: CardView
+    private lateinit var imageViewAdd: ImageView
+
+
 
     private val TAG = "GameTrioPlayersActivity"
 
@@ -32,9 +40,11 @@ class PlayersActivity : AppCompatActivity() {
 
         getPlayers().execute()
         listView = findViewById(R.id.players_list_view)
-
+        imageViewAdd = findViewById(R.id.imageViewAdd)
         addPlayerButton = findViewById(R.id.buttonAddPlayer)
         startButton = findViewById(R.id.start_game)
+
+
 
         listView.setOnItemClickListener { _, _, position, _ ->
             val selectedPlayer = players[position]
@@ -61,6 +71,7 @@ class PlayersActivity : AppCompatActivity() {
         startButton.setOnClickListener {
             openActivityChoose()
         }
+
     }
 
     private inner class getPlayers : AsyncTask<Void, Void, Unit>() {
@@ -84,6 +95,14 @@ class PlayersActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
         listView.adapter = adapter
+
+        if (players.size < 2){
+            startButton.isEnabled = false
+        }
+        if (players.size >= 6){
+            addPlayerButton.isEnabled = false
+        }
+
     }
 
     private fun openActivityPlayer(){
