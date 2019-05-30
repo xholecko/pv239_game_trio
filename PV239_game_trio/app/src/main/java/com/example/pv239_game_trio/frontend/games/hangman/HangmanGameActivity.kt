@@ -18,6 +18,7 @@ import androidx.core.app.NavUtils
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
+import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.frontend.main.start.MainActivity
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -27,6 +28,7 @@ import java.util.*
 
 class HangmanGameActivity : AppCompatActivity() {
 
+    private lateinit var players: Array<PlayerEntity>
     private lateinit var words: Array<String>
     private lateinit var currentWord: String
     private lateinit var wordLayout: LinearLayout
@@ -95,7 +97,8 @@ class HangmanGameActivity : AppCompatActivity() {
 
     private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
-            playerCount = db.playerDAO().showAllPlayers().size
+            players = db.playerDAO().showAllPlayers()
+            playerCount = players.size
             scoreArray = Array(playerCount){0}
         }
 
@@ -141,7 +144,7 @@ class HangmanGameActivity : AppCompatActivity() {
     }
 
     private fun updatePlayerInfo() {
-        var text = "Current player: $currentPlayer"
+        var text = "Current player: ${players[currentPlayer].name}"
         currentPlayerTextView.text = text
 
         text = "Score: ${scoreArray[currentPlayer]}"
