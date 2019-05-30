@@ -34,6 +34,7 @@ class RemovePlayerActivity : AppCompatActivity() {
 
     private lateinit var  textView: TextView
     private lateinit var  buttonRemove: Button
+    private lateinit var  buttonCancel: Button
 
 
     private lateinit var db : AppDB
@@ -86,6 +87,9 @@ class RemovePlayerActivity : AppCompatActivity() {
 
                 }
             }.start()
+        })
+        buttonCancel.setOnClickListener(View.OnClickListener {
+            openActivityMain()
         })
     }
 

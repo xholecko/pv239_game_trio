@@ -1,116 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<TableLayout
+        android:id="@+id/table_score"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".frontend.main.start.ScoreActivity">
+        android:stretchColumns="1"
+        android:padding="50sp">
 
-    <TextView
-            android:id="@+id/highscore_text"
-            android:text="@string/highscore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
-            android:textAlignment="center"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:padding="3sp" />
+    <Space
+            android:layout_height="0sp"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+    />
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                 android:id="@+id/table_score"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:stretchColumns="1"
-                 android:layout_below="@id/highscore_text"
-                 android:padding="50sp">
+    <TableRow>
+        <TextView
+                android:id="@+id/table_row_player_1"
+                android:layout_column="1"
+                android:textSize="20sp"
+                android:textColor="#0000FF"
+                android:padding="3sp" />
+        <TextView
+                android:id="@+id/table_row_points_1"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:padding="3sp" />
+    </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:id="@+id/table_row_player_1"
-                    android:layout_column="1"
-                    android:textSize="20sp"
-                    android:textColor="#0000FF"
-                    android:padding="3sp" />
-            <TextView
-                    android:id="@+id/table_row_points_1"
-                    android:gravity="right"
-                    android:textSize="20sp"
-                    android:padding="3sp" />
-        </TableRow>
+    <TableRow>
+        <TextView
+                android:id="@+id/table_row_player_2"
+                android:layout_column="1"
+                android:textSize="20sp"
+                android:textColor="#0000FF"
+                android:padding="3sp" />
+        <TextView
+                android:id="@+id/table_row_points_2"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:padding="3sp" />
+    </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:id="@+id/table_row_player_2"
-                    android:layout_column="1"
-                    android:textSize="20sp"
-                    android:textColor="#0000FF"
-                    android:padding="3sp" />
-            <TextView
-                    android:id="@+id/table_row_points_2"
-                    android:gravity="right"
-                    android:textSize="20sp"
-                    android:padding="3sp" />
-        </TableRow>
+    <TableRow>
+        <TextView
+                android:id="@+id/table_row_player_3"
+                android:layout_column="1"
+                android:textSize="20sp"
+                android:textColor="#0000FF"
+                android:padding="3sp" />
+        <TextView
+                android:id="@+id/table_row_points_3"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:padding="3sp" />
+    </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:id="@+id/table_row_player_3"
-                    android:layout_column="1"
-                    android:textSize="20sp"
-                    android:textColor="#0000FF"
-                    android:padding="3sp" />
-            <TextView
-                    android:id="@+id/table_row_points_3"
-                    android:gravity="right"
-                    android:textSize="20sp"
-                    android:padding="3sp" />
-        </TableRow>
+    <TableRow>
+        <TextView
+                android:id="@+id/table_row_player_4"
+                android:layout_column="1"
+                android:textSize="20sp"
+                android:textColor="#0000FF"
+                android:padding="3sp" />
+        <TextView
+                android:id="@+id/table_row_points_4"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:padding="3sp" />
+    </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:id="@+id/table_row_player_4"
-                    android:layout_column="1"
-                    android:textSize="20sp"
-                    android:textColor="#0000FF"
-                    android:padding="3sp" />
-            <TextView
-                    android:id="@+id/table_row_points_4"
-                    android:gravity="right"
-                    android:textSize="20sp"
-                    android:padding="3sp" />
-        </TableRow>
+    <TableRow>
+        <TextView
+                android:id="@+id/table_row_player_5"
+                android:layout_column="1"
+                android:textSize="20sp"
+                android:textColor="#0000FF"
+                android:padding="3sp" />
+        <TextView
+                android:id="@+id/table_row_points_5"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:padding="3sp" />
+    </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:id="@+id/table_row_player_5"
-                    android:layout_column="1"
-                    android:textSize="20sp"
-                    android:textColor="#0000FF"
-                    android:padding="3sp" />
-            <TextView
-                    android:id="@+id/table_row_points_5"
-                    android:gravity="right"
-                    android:textSize="20sp"
-                    android:padding="3sp" />
-        </TableRow>
+    <TableRow>
+        <TextView
+                android:id="@+id/table_row_player_6"
+                android:layout_column="1"
+                android:textSize="20sp"
+                android:textColor="#0000FF"
+                android:padding="3sp" />
+        <TextView
+                android:id="@+id/table_row_points_6"
+                android:gravity="end"
+                android:textSize="20sp"
+                android:padding="3sp" />
+    </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:id="@+id/table_row_player_6"
-                    android:layout_column="1"
-                    android:textSize="20sp"
-                    android:textColor="#0000FF"
-                    android:padding="3sp" />
-            <TextView
-                    android:id="@+id/table_row_points_6"
-                    android:gravity="right"
-                    android:textSize="20sp"
-                    android:padding="3sp" />
-        </TableRow>
+    <Space
+            android:layout_height="0sp"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+    />
 
-    </TableLayout>
-</RelativeLayout>
+</TableLayout>
 

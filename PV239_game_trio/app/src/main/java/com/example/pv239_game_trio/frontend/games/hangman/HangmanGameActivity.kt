@@ -76,6 +76,11 @@ class HangmanGameActivity : AppCompatActivity() {
         guess = findViewById(R.id.answer)
 
         db = Room.databaseBuilder<AppDB>(applicationContext, AppDB :: class.java, "GameTrioDB").build()
+        words = resources.getStringArray(R.array.words)
+//        Thread{
+//            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
+//            Log.d(TAG,words.toString())
+//        }.start()
 
         wordLayout = findViewById(R.id.word)
         currentWord = ""
@@ -84,14 +89,14 @@ class HangmanGameActivity : AppCompatActivity() {
 
         getPlayerCountAsync().execute()
 
+//        scoreArray = Array(playerCount){0}
+
     }
 
     private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
-            var players = db.playerDAO().showAllPlayers()
-            words = db.hangmanDAO().showAllWords().map { t -> t.word }.toTypedArray()
-            playerCount = players.size
-            scoreArray = players.map { t -> t.points }.toTypedArray()
+            playerCount = db.playerDAO().showAllPlayers().size
+            scoreArray = Array(playerCount){0}
         }
 
         override fun onPostExecute(result: Unit?) {
@@ -119,8 +124,6 @@ class HangmanGameActivity : AppCompatActivity() {
             if (word == currentWord){
                 scoreArray[currentPlayer]+=5
                 displayEndGameDialog("Congratulations", "You win!\n\nThe answer was:\n\n$currentWord\n\nYou earned ${scoreArray[currentPlayer]} points so far!")
-
-
             }
             else{
                 scoreArray[currentPlayer]-=5
@@ -220,8 +223,6 @@ class HangmanGameActivity : AppCompatActivity() {
         updatePlayerInfo()
     }
 
-
-
     private fun displayEndGameDialog(title: String, message: String) {
         disableButtons()
         val build = AlertDialog.Builder(this)
@@ -236,12 +237,6 @@ class HangmanGameActivity : AppCompatActivity() {
         ) { _, _ -> this@HangmanGameActivity.finish() }
 
         build.show()
-
-        Thread{
-            for (i in 0 until playerCount){
-                db.playerDAO().addPointsById(i, scoreArray[i])
-            }
-        }.start()
     }
 
     private fun disableButtons() {
@@ -297,10 +292,6 @@ class HangmanGameActivity : AppCompatActivity() {
 
         helpBuild.create()
         helpBuild.show()
-    }
-
-    override fun onBackPressed() {
-        return
     }
 
 }

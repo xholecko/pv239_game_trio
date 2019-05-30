@@ -11,40 +11,51 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".frontend.main.PlayersActivity"
-                  android:parentActivityName=".frontend.main.start.MainActivity">
-
+                  android:parentActivityName=".frontend.main.start.MainActivity"
+                  android:label="@string/title_activity_players">
         </activity>
         <activity
                 android:name=".frontend.games.charade.CharadeAddPointsActivity"
+                android:label="@string/charade_points_label"
                 android:parentActivityName=".frontend.main.ChooseActivity"/>
         <activity
                 android:name=".frontend.main.start.AddPlayerActivity"
+                android:label="@string/add_player_label"
                 android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity
                 android:name=".frontend.games.charade.CharadeActivity"
+                android:label="@string/charade_label"
                 android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity
                 android:name=".frontend.main.start.ScoreActivity"
+                android:label="@string/score_label"
                 android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
-        <activity android:name=".frontend.games.tikBum.TikBumAddPointsActivity">
+        <activity
+                android:name=".frontend.games.tikBum.TikBumAddPointsActivity"
+                android:label="@string/tikbum_points_label"
+                android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity
                 android:name=".frontend.main.start.RemovePlayerActivity"
+                android:label="@string/remove_player_label"
                 android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity
                 android:name=".frontend.main.ChooseActivity"
+                android:label="@string/choose_activity_label"
                 android:parentActivityName=".frontend.main.start.MainActivity">
         </activity>
         <activity
                 android:name=".frontend.games.tikBum.TikBumActivity"
+                android:label="@string/tikbum_label"
                 android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity
                 android:name=".frontend.games.hangman.HangmanGameActivity"
+                android:label="@string/hangman_label"
                 android:parentActivityName=".frontend.main.ChooseActivity">
         </activity>
         <activity android:name=".frontend.main.start.MainActivity">

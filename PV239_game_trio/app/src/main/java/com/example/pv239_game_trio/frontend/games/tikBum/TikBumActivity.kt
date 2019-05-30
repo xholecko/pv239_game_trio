@@ -24,11 +24,15 @@ class TikBumActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioTikBum"
 
+    private val NUMBER_OF_WORDS_DB = 6
     private val TIME_MILLIS_UP_LIMIT : Long = 12000
     private val TIME_MILLIS_DOWN_LIMIT : Long = 1000
 
     private lateinit var soundTikTok : MediaPlayer
     private lateinit var soundBoom : MediaPlayer
+
+    private var isBackDisable = true
+
     private lateinit var buttonStart : Button
 
     private lateinit var timer: CountDownTimer
@@ -67,9 +71,11 @@ class TikBumActivity : AppCompatActivity() {
         buttonStart.setOnClickListener({
             Log.d(TAG,"button buttonStart was pressed")
             randomTime = (TIME_MILLIS_DOWN_LIMIT..TIME_MILLIS_UP_LIMIT).shuffled().first()
-            Log.d(TAG,"Time is set to: " + randomTime + " millis")
             wordTextView.text = tikBumWord.word.toUpperCase()
             positionTextView.text = getPosition().toUpperCase()
+
+
+
             startTimer(randomTime)
 
         })
@@ -81,8 +87,14 @@ class TikBumActivity : AppCompatActivity() {
     private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
             val randomWord = (1..7).shuffled().first()
+            //Log.d(TAG,"Time is set to: " + randomTime + " millis")
+            //positionTextView.text = getPosition().toUpperCase()
             tikBumWord = db.tikBumDAO().findWordById(randomWord)
 
+        }
+
+        override fun onPostExecute(result: Unit?) {
+            //gameInit()
         }
     }
 
@@ -162,7 +174,8 @@ class TikBumActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        return
+        if (isBackDisable) return
+        Log.e(TAG, "Back is disabled")
     }
 
 

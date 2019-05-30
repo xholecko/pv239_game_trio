@@ -8,5 +8,6 @@ data class TikBumEntity (
 
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
-    var word : String = ""
+    var word : String = "",
+    var position : Int = 0
 )
