@@ -36,7 +36,6 @@ class PlayersActivity : AppCompatActivity() {
         addPlayerButton = findViewById(R.id.buttonAddPlayer)
         startButton = findViewById(R.id.start_game)
 
-        val context = this
         listView.setOnItemClickListener { _, _, position, _ ->
             val selectedPlayer = players[position]
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
