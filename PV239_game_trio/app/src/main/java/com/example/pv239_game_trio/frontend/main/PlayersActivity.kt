@@ -7,10 +7,7 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ListView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -66,10 +63,20 @@ class PlayersActivity : AppCompatActivity() {
         }
 
         addPlayerButton.setOnClickListener {
-            openActivityAdd()
+            if (players.size < 6){
+                openActivityAdd()
+            }
+            else{
+                Toast.makeText(this, "Max number of players is 6.", Toast.LENGTH_SHORT).show()
+            }
         }
         startButton.setOnClickListener {
-            openActivityChoose()
+            if (players.size >= 2){
+                openActivityChoose()
+            }
+            else{
+                Toast.makeText(this, "There must be at least 2 players added.", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -95,14 +102,6 @@ class PlayersActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
         listView.adapter = adapter
-
-        if (players.size < 2){
-            startButton.isEnabled = false
-        }
-        if (players.size >= 6){
-            addPlayerButton.isEnabled = false
-        }
-
     }
 
     private fun openActivityPlayer(){
