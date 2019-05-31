@@ -23,7 +23,7 @@
         <activity
                 android:name=".frontend.main.start.AddPlayerActivity"
                 android:label="@string/add_player_label"
-                android:parentActivityName=".frontend.main.start.MainActivity"
+                android:parentActivityName=".frontend.main.start.ScoreActivity"
         android:screenOrientation="portrait">
         </activity>
         <activity
