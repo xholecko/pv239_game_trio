@@ -12,7 +12,12 @@ import com.example.pv239_game_trio.backend.entities.TikBumEntity
 class App : Application() {
     private val TAG = "GameTrioApp"
 
-    private val HANGMAN_WORDS = setOf("CHARGER","COMPUTER","TABLET","SYSTEM","APPLICATION","INTERNET","STYLUS","ANDROID","KEYBOARD","SMARTPHONE")
+    private val HANGMAN_WORDS = setOf("BLIZZARD","MAXIMIZE","CUCUMBER","ALCOHOLIC",
+        "LUMBERJACK","VARIABLE","QUARANTINE","BRILLIANT","CHARGER","COMPUTER","TABLET",
+        "SYSTEM","REVOLUTION","CONSTRUCTION","FLAMETHROWER","SKATEBOARD","REFRIGERATOR",
+        "NEIGHBOURHOOD","CONSEQUENCE","ARTIFICIAL","INTELLIGENCE","CIVILIZATION","RELATIONSHIP",
+        "WATERMELON","GOVERNMENT","EQUIPMENT","CONNECTION","FIDELITY","APPLICATION","INTERNET","STYLUS",
+        "ANDROID","KEYBOARD","SMARTPHONE","TECHNOLOGY","COMPRESSOR","TELEVISION","OPTIMIZATION","RESERVATION","NEWSPAPER")
 
     private val WORDS = setOf("Elephant", "Mole's hill", "Rebellion", "Guitar", "Chimpanzee",
         "The Sword in the Stone", "The Magic Carpet", "Car", "Human", "Apple", "Vegetables",
