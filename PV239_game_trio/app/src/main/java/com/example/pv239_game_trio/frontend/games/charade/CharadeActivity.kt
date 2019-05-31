@@ -145,12 +145,12 @@ class CharadeActivity : AppCompatActivity() {
 
         helpBuild.setTitle("Help")
         helpBuild.setMessage(
-            "Guess the word by selecting the letters.\n\n" +
-                    "You only have 6 wrong selections then it's game over!\n\n" +
-                    "+5 points for guessing correct word\n" +
-                    "+1 point for guessing correct letter\n" +
-                    "-5 points for guessing wrong word\n" +
-                    "-1 point for guessing wrong letter\n"
+            "Describe, draw, or pantomime the given word (blue text).\n\n" +
+                    "When ready, press start to begin 60 second countdown. \n\n" +
+                    "After the countdown finishes, select person who did the \n" +
+                    "charade, and person who answered correctly. Both of them \n " +
+                    "will get a point each. After that, start new charade. If \n" +
+                    "no one guessed the correct word, skip to a new charade. \n"
         )
         helpBuild.setPositiveButton(
             "OK"
