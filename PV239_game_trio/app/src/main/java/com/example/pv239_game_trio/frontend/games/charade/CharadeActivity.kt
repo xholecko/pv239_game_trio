@@ -146,11 +146,11 @@ class CharadeActivity : AppCompatActivity() {
         helpBuild.setTitle("Help")
         helpBuild.setMessage(
             "Describe, draw, or pantomime the given word (blue text).\n\n" +
-                    "When ready, press start to begin 60 second countdown. \n\n" +
-                    "After the countdown finishes, select person who did the \n" +
-                    "charade, and person who answered correctly. Both of them \n " +
-                    "will get a point each. After that, start new charade. If \n" +
-                    "no one guessed the correct word, skip to a new charade. \n"
+                    "When ready, press start to begin 60 second countdown. " +
+                    "After the countdown finishes, select person who did the " +
+                    "charade, and person who answered correctly. Both of them " +
+                    "will get a point each. After that, start new charade. If " +
+                    "no one guessed the correct word, skip to a new charade."
         )
         helpBuild.setPositiveButton(
             "OK"
