@@ -33,4 +33,11 @@ interface TikBumDAO {
      */
     @Query("select * from TikBumEntity where id = :wordId")
     fun findWordById(wordId : Int) : TikBumEntity
+
+
+    /**
+     * @return list of all Syllables from database.
+     */
+    @Query("select * from TikBumEntity")
+    fun showAllSyllables() : Array<TikBumEntity>
 }

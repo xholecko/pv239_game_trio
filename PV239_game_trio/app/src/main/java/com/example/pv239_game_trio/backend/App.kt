@@ -37,6 +37,10 @@ class App : Application() {
         "Watching movie", "Sorting mail", "Ordering food", "Washing a car", "Visiting the zoo",
         "Playing the basketball", "Operating on a patient", "Arranging flowers", "King", "Mace")
 
+    private val TIK_BUM_SYLLABLES = setOf("ach","tel","sit","ut","bra","le","ta","sk","li","kl",
+        "rat", "ol","ta","br","rup","ak","sto","te","as","ce","ko","jan","va","ti","si","do","ou",
+        "re","rov","so","dlo","bon","no","ton","stu","bo","ros","pa","mu","ond","me","ma","ka","at",
+        "vid","ost","str","ce","art","ne","tra","en","pel","tr")
 
     override fun onCreate() {
         super.onCreate()
@@ -67,44 +71,53 @@ class App : Application() {
     }
 
     private fun createWords(db: AppDB){
-        Thread {
-            var word0 = TikBumEntity()
-            word0.id = 0
-            word0.word = "lol"
+//        Thread {
+//            var word0 = TikBumEntity()
+//            word0.id = 0
+//            word0.word = "lol"
+//
+//            var word1 = TikBumEntity()
+//            word1.id = 1
+//            word1.word = "ha"
+//
+//            var word2 = TikBumEntity()
+//            word2.id = 2
+//            word2.word = "na"
+//
+//            var word3 = TikBumEntity()
+//            word3.id = 3
+//            word3.word = "ba"
+//
+//            var word4 = TikBumEntity()
+//            word4.id = 4
+//            word4.word = "fa"
+//
+//            var word5 = TikBumEntity()
+//            word5.id = 5
+//            word5.word = "ra"
+//
+//            var word6 = TikBumEntity()
+//            word6.id = 6
+//            word6.word = "la"
+//
+//            db.tikBumDAO().create(word0)
+//            db.tikBumDAO().create(word1)
+//            db.tikBumDAO().create(word2)
+//            db.tikBumDAO().create(word3)
+//            db.tikBumDAO().create(word4)
+//            db.tikBumDAO().create(word5)
+//            db.tikBumDAO().create(word6)
+//            Log.d(TAG,"7 words created")
+//
+//        }.start()
 
-            var word1 = TikBumEntity()
-            word1.id = 1
-            word1.word = "ha"
+        Thread{
+            for(syllable in TIK_BUM_SYLLABLES){
+                val tikBum = TikBumEntity()
+                tikBum.word = syllable
 
-            var word2 = TikBumEntity()
-            word2.id = 2
-            word2.word = "na"
-
-            var word3 = TikBumEntity()
-            word3.id = 3
-            word3.word = "ba"
-
-            var word4 = TikBumEntity()
-            word4.id = 4
-            word4.word = "fa"
-
-            var word5 = TikBumEntity()
-            word5.id = 5
-            word5.word = "ra"
-
-            var word6 = TikBumEntity()
-            word6.id = 6
-            word6.word = "la"
-
-            db.tikBumDAO().create(word0)
-            db.tikBumDAO().create(word1)
-            db.tikBumDAO().create(word2)
-            db.tikBumDAO().create(word3)
-            db.tikBumDAO().create(word4)
-            db.tikBumDAO().create(word5)
-            db.tikBumDAO().create(word6)
-            Log.d(TAG,"7 words created")
-
+                db.tikBumDAO().create(tikBum)
+            }
         }.start()
     }
 

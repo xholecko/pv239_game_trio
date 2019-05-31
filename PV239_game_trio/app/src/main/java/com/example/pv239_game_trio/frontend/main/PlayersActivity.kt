@@ -81,7 +81,7 @@ class PlayersActivity : AppCompatActivity() {
 
     }
 
-    private inner class getPlayers : AsyncTask<Void, Void, Unit>() {
+     private inner class getPlayers : AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
             players = db.playerDAO().showAllPlayers()
 

@@ -17,6 +17,7 @@ import androidx.core.app.NavUtils
 import androidx.room.Room
 import com.example.pv239_game_trio.R
 import com.example.pv239_game_trio.backend.AppDB
+import com.example.pv239_game_trio.backend.entities.PlayerEntity
 import com.example.pv239_game_trio.backend.entities.TikBumEntity
 
 
@@ -24,9 +25,9 @@ class TikBumActivity : AppCompatActivity() {
 
     private val TAG = "GameTrioTikBum"
 
-    private val NUMBER_OF_WORDS_DB = 6
-    private val TIME_MILLIS_UP_LIMIT : Long = 12000
+    private val TIME_MILLIS_UP_LIMIT : Long = 60000
     private val TIME_MILLIS_DOWN_LIMIT : Long = 1000
+    private lateinit var syllables: Array<TikBumEntity>
 
     private lateinit var soundTikTok : MediaPlayer
     private lateinit var soundBoom : MediaPlayer
@@ -74,6 +75,7 @@ class TikBumActivity : AppCompatActivity() {
             wordTextView.text = tikBumWord.word.toUpperCase()
             positionTextView.text = getPosition().toUpperCase()
 
+            Log.d(TAG,"Time is set to: " + randomTime/1000 + " seconds")
 
 
             startTimer(randomTime)
@@ -86,16 +88,15 @@ class TikBumActivity : AppCompatActivity() {
 
     private inner class getPlayerCountAsync: AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg params: Void?) {
-            val randomWord = (1..7).shuffled().first()
-            //Log.d(TAG,"Time is set to: " + randomTime + " millis")
+            syllables = db.tikBumDAO().showAllSyllables()
+
+            val randomWord = (1..syllables.size).shuffled().first()
             //positionTextView.text = getPosition().toUpperCase()
             tikBumWord = db.tikBumDAO().findWordById(randomWord)
 
         }
 
-        override fun onPostExecute(result: Unit?) {
-            //gameInit()
-        }
+
     }
 
 
@@ -107,7 +108,13 @@ class TikBumActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                NavUtils.navigateUpFromSameTask(this)
+                if (timerRunning) {
+                    timer.cancel()
+                    soundTikTok.stop()
+                    Log.e(TAG, "Back is pressed in toolbar")
+                    Log.e(TAG, "timer is stopped, sound is stopped")
+                }
+                    NavUtils.navigateUpFromSameTask(this)
                 return true
             }
             R.id.action_help -> {
@@ -124,12 +131,17 @@ class TikBumActivity : AppCompatActivity() {
 
         helpBuild.setTitle("Help")
         helpBuild.setMessage(
-            "Guess the word by selecting the letters.\n\n" +
-                    "You only have 6 wrong selections then it's game over!\n\n" +
-                    "+5 points for guessing correct word\n" +
-                    "+1 point for guessing correct letter\n" +
-                    "-5 points for guessing wrong word\n" +
-                    "-1 point for guessing wrong letter\n"
+            "Welcome to TIK BUM GAME.\n\n" +
+                    "Random syllable will be generated with random position! " +
+                    "Position can be suffix, prefix or infix.\n" +
+                    "Your goal is to say the world that contain syllable in selected position. " +
+                    "If you say the correct word it is the next player turn. \n" +
+
+                    "But pay attention because time is ticking and the bomb may explode at random time! " +
+                    "When the bomb explode the player who is currently on turn looses the game and other players gain one point each. \n\n" +
+                    "Good luck!"
+
+
         )
         helpBuild.setPositiveButton(
             "OK"
@@ -140,7 +152,7 @@ class TikBumActivity : AppCompatActivity() {
     }
 
     private fun getPosition() : String{
-        val positionString: MutableList<String> = mutableListOf("Tick","TickTock","Boom")
+        val positionString: MutableList<String> = mutableListOf("Prefix","Suffix","Infix")
         return positionString[(0..2).shuffled().first()]
 
     }
@@ -174,8 +186,18 @@ class TikBumActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (isBackDisable) return
-        Log.e(TAG, "Back is disabled")
+        if (timerRunning){
+            timer.cancel()
+            soundTikTok.stop()
+            Log.e(TAG, "Back is pressed")
+
+            Log.e(TAG, "timer is stopped, sound is stopped")
+
+        }
+
+        super.onBackPressed()
+        Log.e(TAG, "Back is pressed")
+
     }
 
 

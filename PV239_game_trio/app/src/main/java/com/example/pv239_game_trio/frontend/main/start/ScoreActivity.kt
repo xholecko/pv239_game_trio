@@ -107,7 +107,8 @@ class ScoreActivity : AppCompatActivity() {
                         db.playerDAO().deleteAllPlayers()
                         Log.d(TAG, "deleteAllPlayers() DONE")
                     }.start()
-                    openActivityScore()
+                    openActivityMain()
+
 
                 }
                 builder.setNegativeButton("No") { _, _ ->
@@ -125,4 +126,9 @@ class ScoreActivity : AppCompatActivity() {
         val intent = Intent(this, ScoreActivity::class.java)
         startActivity(intent)
     }
+    private fun openActivityMain(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
 }
