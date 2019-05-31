@@ -109,6 +109,7 @@ class ScoreActivity : AppCompatActivity() {
                     }.start()
                     openActivityMain()
 
+
                 }
                 builder.setNegativeButton("No") { _, _ ->
                     Log.d(TAG, "deleteAllPlayers() canceled by user")
@@ -129,4 +130,5 @@ class ScoreActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
 }
